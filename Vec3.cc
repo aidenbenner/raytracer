@@ -1,11 +1,3 @@
-#include <algorithm>
-#include <cstdio>
-#include <iostream>
-#include <utility>
-#include <vector>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
 #include "Vec3.h"
 
 inline Vec3::Vec3() : x(0), y(0), z(0) {
@@ -27,17 +19,26 @@ inline bool operator == (const Vec3 &a, const Vec3 &b) {
 inline bool operator != (const Vec3 &a, const Vec3 &b) {
 	return !(a == b);
 }
-//
-// Vec3 operator + (const Vec3 &v) {
-//      return Vec3(x + v.x, y + v.y, z + v.z);
-// }
-// Vec3 operator - (const Vec3 &v) {
-//      return Vec3(x + v.x, y + v.y, z + v.z);
-// }
-// Vec3 operator * (const double &f) {
-//      return Vec3(x * f, y * f, z * f);
-// }
-// Vec3 operator * (const Vec3 &v) {
-//
-// }
-// Vec3 operator - ();
+
+inline Vec3 operator + (const Vec3 &a, const Vec3 &b) {
+	return Vec3(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+inline Vec3 operator - (const Vec3 &a, const Vec3 &b) {
+	return Vec3(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+inline Vec3 operator - (const Vec3 &v) {
+	return Vec3(-v.x, -v.y, -v.z);
+}
+
+inline Vec3 operator * (const double f, const Vec3 &v) {
+	return Vec3(v.x * f, v.y * f, v.z * f);
+}
+inline Vec3 operator * (const Vec3 &v, const double f) {
+	return Vec3(v.x * f, v.y * f, v.z * f);
+}
+inline Vec3 operator / (const double f, const Vec3 &v) {
+	return Vec3(v.x / f, v.y / f, v.z / f);
+}
+inline Vec3 operator / (const Vec3 &v, const double f) {
+	return Vec3(v.x / f, v.y / f, v.z / f);
+}
