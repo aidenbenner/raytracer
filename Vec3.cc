@@ -71,5 +71,5 @@ inline Vec3 cross(const Vec3 &a, const Vec3 &b) {
 }
 
 inline Vec3 proj(const Vec3 &a, const Vec3 &b) {
-	return dot(a, b) / (b.length() * b.length()) * b;
+	return dot(a, b) / dot(b, b) * b;
 }
