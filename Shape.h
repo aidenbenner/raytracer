@@ -4,9 +4,13 @@
 #include "Vec3.h"
 
 class Shape {
-Vec3 surfaceColor;
-double transparency;
-Shape(Vec3 surfaceColor, double transparency);
+	Vec3 surfaceColor;
+	double transparency;
+
+public:
+
+	Shape(Vec3 surfaceColor, double transparency);
+
 };
 
 #endif
