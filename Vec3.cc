@@ -45,8 +45,17 @@ inline Vec3 operator / (const Vec3 &v, const double f) {
 	return Vec3(v.x / f, v.y / f, v.z / f);
 }
 
-// int main() {
-//      Vec3 a = Vec3(1, 1, 1);
-//      Vec3 b = Vec3(1, 1, 1);
-//      std::cout << (a.dot(b)) << std::endl;
-// }
+inline double Vec3::X() {
+	return x;
+}
+inline double Vec3::Y() {
+	return y;
+}
+inline double Vec3::Z() {
+	return z;
+}
+
+int main() {
+	Vec3 a = Vec3(1, 1, 1);
+	Vec3 b = Vec3(1, 1, 1);
+}

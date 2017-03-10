@@ -24,9 +24,11 @@ friend Vec3 operator * (const Vec3 &v, const double f);
 friend Vec3 operator / (const double f, const Vec3 &v);
 friend Vec3 operator / (const Vec3 &v, const double f);
 
-friend double dot(const Vec3 &v);
-
 friend std::ostream &operator << (std::ostream &os, const Vec3 &v);
+
+double X();
+double Y();
+double Z();
 
 private:
 double x, y, z;
