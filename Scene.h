@@ -17,14 +17,18 @@ inline void AddShape(Shape* s) {
 	shapes.push_back(s);
 }
 
-Vec3 Trace(Vec3& dir, Vec3& pos); 
+inline void AddLight(Light l) {
+	light.push_back(l);
+}
+
+Vec3 Trace(Vec3& dir, Vec3& pos);
 
 void Render();
 
 private:
 Camera cam;
 vector<Shape*> shapes;
-
+vector<Light> light;
 
 };
 

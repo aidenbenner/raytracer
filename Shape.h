@@ -15,7 +15,9 @@ public:
 Shape(Vec3 surfaceColor, double transparency);
 virtual Vec3 *intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection);
 
-  Vec3 getSurfaceColor(){ return surfaceColor; }
+Vec3 getSurfaceColor(){
+	return surfaceColor;
+}
 
 };
 
