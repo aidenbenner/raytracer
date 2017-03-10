@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <cstdio>
+#include "Constants.h"
 
 class Vec3 {
 public:
@@ -16,8 +17,8 @@ bool operator != (const Vec3 &v) const;
 Vec3 operator + (const Vec3 &v) const;
 Vec3 operator - (const Vec3 &v) const;
 Vec3 operator - () const;
-Vec3 operator * (const double f) const;
-Vec3 operator / (const double f) const;
+Vec3 operator * (const double &f) const;
+Vec3 operator / (const double &f) const;
 
 static double dot(const Vec3 &a, const Vec3 &b);
 static Vec3 cross(const Vec3 &a, const Vec3 &b);
