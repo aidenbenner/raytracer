@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "Shape.h"
 #include "Scene.h"
+#include "Sphere.h"
 
 void Scene::Render() {
   int height = cam.GetSHeight();
@@ -40,14 +41,14 @@ Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
   double minDist = INF; 
   
   for(int i = 0; i<shapes.size(); i++){
-    Vec3* point = intersectionPoint(dir, pos); 
+  Vec3* point = shapes[i]->intersectionPoint(dir, pos); 
 
     //check if we hit
     if(point == nullptr){
       continue;
     }
 
-    double dist = (point - pos).length(); 
+    double dist = (*point - pos).length(); 
     if(dist < minDist){
       objInd = i; 
       minDist = dist;
@@ -61,7 +62,7 @@ Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
   if(hitPoint == nullptr){
     return Vec3(255,255,255); //background is black
   }
-  Vec3 col = shapes[objInd]->surfaceColor;
+  Vec3 col = shapes[objInd]->getSurfaceColor();
   delete shapes[objInd]; 
   return col;
 }
