@@ -4,6 +4,8 @@ inline Vec3::Vec3() : x(0), y(0), z(0) {
 }
 inline Vec3::Vec3(double x, double y, double z) : x(x), y(y), z(z) {
 }
+inline Vec3::Vec3(const Vec3 &v) : x(v.x), y(v.y), z(v.y) {
+}
 
 inline std::ostream &operator << (std::ostream &os, const Vec3 &v) {
 	os << '[' << v.x << ' ' << v.y << ' ' << v.z << ']';
@@ -42,3 +44,9 @@ inline Vec3 operator / (const double f, const Vec3 &v) {
 inline Vec3 operator / (const Vec3 &v, const double f) {
 	return Vec3(v.x / f, v.y / f, v.z / f);
 }
+
+// int main() {
+//      Vec3 a = Vec3(1, 1, 1);
+//      Vec3 b = Vec3(1, 1, 1);
+//      std::cout << (a.dot(b)) << std::endl;
+// }
