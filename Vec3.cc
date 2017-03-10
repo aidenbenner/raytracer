@@ -57,3 +57,17 @@ inline double Vec3::Z() {
 inline double Vec3::dot(const Vec3 &v) {
 	return x * v.x + y * v.y + z * v.z;
 }
+
+inline double Vec3::length() {
+	return sqrt(x * x + y * y + z * z);
+}
+
+inline Vec3 Vec3::normalize() {
+	double l = length();
+	return Vec3(x / l, y / l, z / l);
+}
+
+int main() {
+	Vec3 a = Vec3(1, 1, 1);
+	std::cout << a.normalize() << std::endl;
+}

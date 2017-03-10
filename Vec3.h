@@ -28,6 +28,8 @@ double Y();
 double Z();
 
 double dot(const Vec3 &v);
+double length();
+Vec3 normalize();
 
 private:
 double x, y, z;
