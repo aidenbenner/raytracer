@@ -17,6 +17,8 @@ inline void AddShape(Shape* s) {
 	shapes.push_back(s);
 }
 
+Vec3 Scene::Trace(Vec3& dir, Vec3& pos); 
+
 void Render();
 
 private:
