@@ -2,5 +2,6 @@
 #define CONSTANTS_H
 
 const double EPS = 1e-9;
+const int INF = 1e9;
 
 #endif
