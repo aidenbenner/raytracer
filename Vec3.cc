@@ -53,3 +53,7 @@ inline double Vec3::Y() {
 inline double Vec3::Z() {
 	return z;
 }
+
+inline double Vec3::dot(const Vec3 &v) {
+	return x * v.x + y * v.y + z * v.z;
+}

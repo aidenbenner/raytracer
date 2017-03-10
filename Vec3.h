@@ -27,6 +27,8 @@ double X();
 double Y();
 double Z();
 
+double dot(const Vec3 &v);
+
 private:
 double x, y, z;
 };
