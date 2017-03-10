@@ -4,7 +4,7 @@
 #include "Scene.h"
 #include "Sphere.h"
 
-void Scene::Render() {
+vector<vector<Vec3> > Scene::Render() {
 	int height = cam.GetSHeight();
 	int width = cam.GetSWidth();
 
@@ -29,11 +29,12 @@ void Scene::Render() {
 			image[i][k] = Trace(ray,pos);
 		}
 	}
+	return image;
 }
 
-bool Scene::ShadowTrace(Vec3&pos) {
+bool Scene::ShadowTrace(Vec3& pos) {
 	for (int i = 0; i < light.size(); i++) {
-		Vec3* ndir = light[i].position - pos;
+		Vec3 ndir = light[i]->getPos() - pos;
 		for (int j = 0; j < shapes.size(); j++) {
 			bool ret = 1;
 			if (shapes[j]->intersectionPoint(ndir, pos) != nullptr) {
@@ -77,7 +78,7 @@ Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
 	if(hitPoint == nullptr) {
 		return Vec3(255,255,255); // white
 	}
-	Vec3 col = Scene::ShadowTrace(hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
+	Vec3 col = Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
 
 	return col;
 }

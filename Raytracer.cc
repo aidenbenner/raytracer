@@ -15,20 +15,7 @@ int main () {
 	Sphere sph = Sphere(Vec3(0, 0, 2), 1, Vec3(20, 102, 20), 0.3);
 	s.AddShape(&sph);
 
-	s.Trace();
+	// cout << sph.intersectionPoint(Vec3(0,0,-5), Vec3 (0,0,1))->X() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Y() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Z() << endl;
 
-	cout << sph.intersectionPoint(Vec3(0,0,-5), Vec3 (0,0,1))->X() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Y() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Z() << endl;
-
-	vector<vector<Vec3> > image;
-
-	// generating random gradient
-	for (int i = 0; i < 400; ++i) {
-		vector<Vec3> temp;
-		for (int j = 0; j < 400; ++j) {
-			temp.push_back(Vec3(i,i,i));
-		}
-		image.push_back(temp);
-	}
-
-	ImageWriter::write(image);
+	ImageWriter::write(s.Render());
 }

@@ -5,10 +5,11 @@
 using namespace std;
 
 class Light {
-	Vec3 position;
-	Vec3 color;
+Vec3 position;
+Vec3 color;
 public:
-	Light(Vec3 position, Vec3 color);
+Light(Vec3 position, Vec3 color);
+Vec3 getPos();
 };
 
 #endif

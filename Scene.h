@@ -17,18 +17,19 @@ inline void AddShape(Shape* s) {
 	shapes.push_back(s);
 }
 
-inline void AddLight(Light l) {
+inline void AddLight(Light* l) {
 	light.push_back(l);
 }
 
 Vec3 Trace(Vec3& dir, Vec3& pos);
 
-void Render();
+vector<vector<Vec3> > Render();
+bool ShadowTrace(Vec3 &pos);
 
 private:
 Camera cam;
 vector<Shape*> shapes;
-vector<Light> light;
+vector<Light*> light;
 
 };
 
