@@ -9,18 +9,19 @@
 using namespace std;
 
 class Scene {
-  public:
-    Scene(Camera c): cam(c) {  }
+public:
+Scene(Camera c) : cam(c) {
+}
 
-    inline void AddShape(Shape* s) {
-      shapes.push_back(s); 
-    }
+inline void AddShape(Shape* s) {
+	shapes.push_back(s);
+}
 
-    void Render(); 
+void Render();
 
-  private:
-    Camera cam;
-    vector<Shape*> shapes; 
+private:
+Camera cam;
+vector<Shape*> shapes;
 
 
 };
