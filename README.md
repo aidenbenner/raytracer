@@ -4,4 +4,3 @@
 
 ### Description
 
-This is a raytracer!!! :DDDD
