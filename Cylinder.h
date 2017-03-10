@@ -9,7 +9,7 @@ class Cylinder : public Shape {
 
 public:
 	Cylinder(Vec3 center, Vec3 axis, double radius, double height, Vec3 surfaceColor, double transparency);
-	double intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) = 0;
+	bool intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) = 0;
 	
 };
 

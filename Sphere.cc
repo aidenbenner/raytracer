@@ -4,6 +4,6 @@ Sphere::Sphere(Vec3 center, double radius, Vec3 surfaceColor, double transparenc
 	: Shape(surfaceColor, transparency), center(center), radius(radius) {
 }
 
-double Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
-	
+bool Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
+	//double perp = center - (proj(center - rayOrigin, rayDirection) + rayOrigin);
 }
