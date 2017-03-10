@@ -5,13 +5,10 @@
 #include <cmath>
 #include <cstdio>
 
-double EPS = 1e-9;
-
 class Vec3 {
 public:
 Vec3();
 Vec3(double x, double y, double z);
-Vec3(const Vec3 &v);
 
 friend bool operator == (const Vec3 &a, const Vec3 &b);
 friend bool operator != (const Vec3 &a, const Vec3 &b);
