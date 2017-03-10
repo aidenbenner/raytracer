@@ -10,17 +10,6 @@ public:
 Vec3();
 Vec3(double x, double y, double z);
 
-friend bool operator == (const Vec3 &a, const Vec3 &b);
-friend bool operator != (const Vec3 &a, const Vec3 &b);
-friend Vec3 operator + (const Vec3 &a, const Vec3 &b);
-friend Vec3 operator - (const Vec3 &a, const Vec3 &b);
-friend Vec3 operator - (const Vec3 &v);
-
-friend Vec3 operator * (const double f, const Vec3 &v);
-friend Vec3 operator * (const Vec3 &v, const double f);
-friend Vec3 operator / (const double f, const Vec3 &v);
-friend Vec3 operator / (const Vec3 &v, const double f);
-
 friend std::ostream &operator << (std::ostream &os, const Vec3 &v);
 
 double X() const;
@@ -30,12 +19,23 @@ double Z() const;
 double length() const;
 Vec3 normalize();
 
-friend double dot(const Vec3 &a, const Vec3 &b);
-friend Vec3 cross(const Vec3 &a, const Vec3 &b);
-friend Vec3 proj(const Vec3 &a, const Vec3 &b);
-
 private:
 double x, y, z;
 };
+
+bool operator == (const Vec3 &a, const Vec3 &b);
+bool operator != (const Vec3 &a, const Vec3 &b);
+Vec3 operator + (const Vec3 &a, const Vec3 &b);
+Vec3 operator - (const Vec3 &a, const Vec3 &b);
+Vec3 operator - (const Vec3 &v);
+
+Vec3 operator * (const double f, const Vec3 &v);
+Vec3 operator * (const Vec3 &v, const double f);
+Vec3 operator / (const double f, const Vec3 &v);
+Vec3 operator / (const Vec3 &v, const double f);
+
+double dot(const Vec3 &a, const Vec3 &b);
+Vec3 cross(const Vec3 &a, const Vec3 &b);
+Vec3 proj(const Vec3 &a, const Vec3 &b);
 
 #endif

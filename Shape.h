@@ -4,13 +4,13 @@
 #include "Vec3.h"
 
 class Shape {
-	Vec3 surfaceColor;
-	double transparency;
+Vec3 surfaceColor;
+double transparency;
 
 public:
 
-	Shape(Vec3 surfaceColor, double transparency);
-	virtual double intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection);
+Shape(Vec3 surfaceColor, double transparency);
+virtual double intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection);
 
 };
 
