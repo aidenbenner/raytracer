@@ -4,6 +4,6 @@ Cylinder::Cylinder(Vec3 center, Vec3 axis, double radius, double height, Vec3 su
 	: Shape(surfaceColor, transparency), center(center), axis(axis), radius(radius), height(height) {
 }
 
-double Cylinder::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
+bool Cylinder::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
 	
 }

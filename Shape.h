@@ -10,7 +10,7 @@ class Shape {
 public:
 
 	Shape(Vec3 surfaceColor, double transparency);
-	virtual double intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection);
+	virtual bool intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection);
 
 };
 
