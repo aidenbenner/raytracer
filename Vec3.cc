@@ -44,21 +44,17 @@ inline Vec3 operator / (const Vec3 &v, const double f) {
 	return Vec3(v.x / f, v.y / f, v.z / f);
 }
 
-inline double Vec3::X() {
+inline double Vec3::X() const {
 	return x;
 }
-inline double Vec3::Y() {
+inline double Vec3::Y() const {
 	return y;
 }
-inline double Vec3::Z() {
+inline double Vec3::Z() const {
 	return z;
 }
 
-inline double Vec3::dot(const Vec3 &v) {
-	return x * v.x + y * v.y + z * v.z;
-}
-
-inline double Vec3::length() {
+inline double Vec3::length() const {
 	return sqrt(x * x + y * y + z * z);
 }
 
@@ -67,7 +63,13 @@ inline Vec3 Vec3::normalize() {
 	return Vec3(x / l, y / l, z / l);
 }
 
-int main() {
-	Vec3 a = Vec3(1, 1, 1);
-	std::cout << a.normalize() << std::endl;
+inline double dot(const Vec3 &a, const Vec3 &b) {
+	return a.x * b.y + a.y * b.y + a.z * b.z;
+}
+inline Vec3 cross(const Vec3 &a, const Vec3 &b) {
+	return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.z);
+}
+
+inline Vec3 proj(const Vec3 &a, const Vec3 &b) {
+	return dot(a, b) / (b.length() * b.length()) * b;
 }

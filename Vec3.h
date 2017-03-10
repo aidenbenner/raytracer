@@ -23,13 +23,16 @@ friend Vec3 operator / (const Vec3 &v, const double f);
 
 friend std::ostream &operator << (std::ostream &os, const Vec3 &v);
 
-double X();
-double Y();
-double Z();
+double X() const;
+double Y() const;
+double Z() const;
 
-double dot(const Vec3 &v);
-double length();
+double length() const;
 Vec3 normalize();
+
+friend double dot(const Vec3 &a, const Vec3 &b);
+friend Vec3 cross(const Vec3 &a, const Vec3 &b);
+friend Vec3 proj(const Vec3 &a, const Vec3 &b);
 
 private:
 double x, y, z;
