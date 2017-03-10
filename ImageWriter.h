@@ -10,6 +10,6 @@ using namespace std;
 class ImageWriter {
 private:
 public:
-	static void writer(vector<vector<Vec3> > image);
+	static void write(vector<vector<Vec3> > image);
 };
 #endif

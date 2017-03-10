@@ -1,6 +1,6 @@
 #include "ImageWriter.h"
 
-void ImageWriter::writer(vector<vector<Vec3> > image) {
+void ImageWriter::write(vector<vector<Vec3> > image) {
 
 	int width = image[0].size();
 	int height = image.size();

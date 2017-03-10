@@ -19,5 +19,18 @@ int main () {
 
 
 
-	cout << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->X() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Y() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Z() << endl;
+	cout << sph.intersectionPoint(Vec3(0,0,-5), Vec3 (0,0,1))->X() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Y() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Z() << endl;
+
+	vector<vector<Vec3> > image;
+
+	// generating random gradient
+	for (int i = 0; i < 400; ++i) {
+		vector<Vec3> temp;
+		for (int j = 0; j < 400; ++j) {
+			temp.push_back(Vec3(i ,i,i));
+		}
+		image.push_back(temp);
+	}
+
+	ImageWriter::write(image);
 }
