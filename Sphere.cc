@@ -10,7 +10,7 @@ Vec3 *Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection)
 	double perp = (center - proj).length();
 	if (perp <= radius) {
 		double d = sqrt(radius * radius - perp * perp);
-		return new Vec3(proj - rayDirection * d);
+		return new Vec3(proj - rayDirection.normalize() * d);
 	} else {
 		return NULL;
 	}

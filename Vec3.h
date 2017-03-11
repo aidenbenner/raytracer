@@ -28,7 +28,7 @@ double Y() const;
 double Z() const;
 
 double length() const;
-Vec3 normalize();
+Vec3 normalize() const;
 
 private:
 double x, y, z;
