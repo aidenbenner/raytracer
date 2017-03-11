@@ -31,9 +31,12 @@ Raytracer built in C++, capable of producing pretty circles.
   <img src="img/progression3.png">
 </p>
 
-#### Shadow effect complete.
+#### Shadow effect complete
 <p align="center">
   <img src="https://puu.sh/uDBaY/7c9782375e.png">
 </p>
 
-
+#### Created Plane for cooler shadow effect
+<p align="center">
+   <img src="img/progression5.png">
+</p>
