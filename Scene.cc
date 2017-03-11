@@ -41,11 +41,11 @@ bool Scene::ShadowTrace(Vec3& pos) {
 				ret = 0;
 			}
 			if (ret) {
-				return 1;
+				return 0;
 			}
 		}
 	}
-	return 0;
+	return 1;
 }
 
 // Returns pixel value
@@ -82,7 +82,7 @@ Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
 	if(hitPoint == nullptr) {
 		return Vec3(255,255,255); // white
 	}
-	Vec3 col = shapes[objInd]->getSurfaceColor(); //Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
+	Vec3 col = Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
 
 	return col;
 }
