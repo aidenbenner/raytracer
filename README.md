@@ -6,4 +6,7 @@
 Raytracer built in C++, capable of producing pretty circles.
 
 ###Progressions
-![](progression0.png)
+![](images/progression0.png)
+![](images/progression1.png)
+![](images/progression2.png)
+![](images/progression3.png)
