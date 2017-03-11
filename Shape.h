@@ -15,6 +15,14 @@ class Shape {
       return surfaceColor;
     }
 
+    double getTransp() { 
+      return transparency;
+    }
+
+    double getRefInd() {
+      return refInd;
+    }
+
   private:
     Vec3 surfaceColor;
     double transparency;
