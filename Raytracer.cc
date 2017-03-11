@@ -12,11 +12,11 @@ int main () {
 	Camera c(Vec3(0,0,0), Vec3(0,0,1), 40, 40, 0, 4000, 4000);
 	Scene s(c);
 
-	Sphere sph1 = Sphere(Vec3(0, 10, 100), 10, Vec3(20, 102, 20), 0.3);
-	Sphere sph2 = Sphere(Vec3(-30, 20, 80), 7, Vec3(100, 40, 20), 0.3);
-	Sphere sph3 = Sphere(Vec3(20, 0, 40), 13, Vec3(12, 32, 123), 0.3);
+	Sphere sph1 = Sphere(Vec3(0, 10, 100), 10, Vec3(20, 102, 20), 0.3, 0.9);
+	Sphere sph2 = Sphere(Vec3(-30, 20, 80), 7, Vec3(100, 40, 20), 0.3, 0.8);
+	Sphere sph3 = Sphere(Vec3(20, 0, 40), 13, Vec3(12, 32, 123), 0.3, 0.7);
 
-	Plane pla1 = Plane(Vec3(0, 1, 0), Vec3(0,50, 100), Vec3(200, 170, 190), 0.4);
+	Plane pla1 = Plane(Vec3(0, 1, 0), Vec3(0,50, 100), Vec3(200, 170, 190), 0.4, 0.8);
 
 	s.AddShape(&sph1);
 	s.AddShape(&sph2);

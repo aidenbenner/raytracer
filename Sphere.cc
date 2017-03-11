@@ -1,7 +1,7 @@
 #include "Sphere.h"
 
-Sphere::Sphere(Vec3 center, double radius, Vec3 surfaceColor, double transparency)
-	: Shape(surfaceColor, transparency), center(center), radius(radius) {
+Sphere::Sphere(Vec3 center, double radius, Vec3 surfaceColor, double transparency, double refracInd)
+	: Shape(surfaceColor, transparency, refracInd), center(center), radius(radius) {
 }
 
 Vec3 *Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
