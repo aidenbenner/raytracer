@@ -6,8 +6,8 @@ Vec3::Vec3() : x(0), y(0), z(0) {
 Vec3::Vec3(double x, double y, double z) : x(x), y(y), z(z) {
 }
 
-std::ostream& Vec3::operator << (std::ostream &os) const {
-	os << '[' << x << ' ' << y << ' ' << z << ']';
+std::ostream& operator << (std::ostream &os, const Vec3 &v) {
+	os << '[' << v.X() << ' ' << v.Y() << ' ' << v.Z() << ']';
 	return os;
 }
 
@@ -65,5 +65,6 @@ Vec3 Vec3::cross(const Vec3 &a, const Vec3 &b) {
 }
 
 Vec3 Vec3::proj(const Vec3 &a, const Vec3 &b) {
+	// std::cout << a << " " << b << std::endl;
 	return b * Vec3::dot(a, b) / Vec3::dot(b, b);
 }

@@ -11,7 +11,6 @@ public:
 Vec3();
 Vec3(double x, double y, double z);
 
-std::ostream &operator << (std::ostream &os) const;
 bool operator == (const Vec3 &v) const;
 bool operator != (const Vec3 &v) const;
 Vec3 operator + (const Vec3 &v) const;

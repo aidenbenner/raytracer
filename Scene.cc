@@ -26,7 +26,7 @@ vector<vector<Vec3> > Scene::Render() {
 			double z = cam.GetPDist();
 
 			Vec3 ray(x,y,z);
-			image[i][k] = Trace(ray,pos);
+			image[i][k] = Trace(ray,dir);
 		}
 	}
 	return image;
@@ -48,16 +48,19 @@ bool Scene::ShadowTrace(Vec3& pos) {
 	return 0;
 }
 
-//returns pixel value
+// Returns pixel value
 Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
 
-	//cast dir
+	// Cast dir
 	Vec3* hitPoint = nullptr;
 	int objInd = 0;
 	double minDist = INF;
 
-	for(int i = 0; i<shapes.size(); i++) {
+	for(int i = 0; i< shapes.size(); i++) {
 		Vec3* point = shapes[i]->intersectionPoint(dir, pos);
+		if (point != nullptr) {
+			std::cout << "Intersects" << std::endl;
+		}
 
 		//check if we hit
 		if(point == nullptr) {
@@ -66,6 +69,7 @@ Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
 
 		double dist = (*point - pos).length();
 		if(dist < minDist) {
+			std::cout << "Distance updated .." << std::endl;
 			objInd = i;
 			minDist = dist;
 			hitPoint = point;
@@ -78,7 +82,7 @@ Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
 	if(hitPoint == nullptr) {
 		return Vec3(255,255,255); // white
 	}
-	Vec3 col = Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
+	Vec3 col = shapes[objInd]->getSurfaceColor(); //Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
 
 	return col;
 }
