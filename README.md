@@ -1,6 +1,6 @@
 
 # Raytracer
-## [Alexander Shah](github.com/ZanderShah), [Angela Chang](github.com/changangela), [Aiden Benner](github.com/aidenbenner)
+## [Alexander Shah](https://github.com/ZanderShah), [Angela Chang](https://github.com/changangela), [Aiden Benner](https://github.com/aidenbenner)
 
 <p align="center">
   <img src="https://puu.sh/uDFNX/fafccf7fbe.png">
