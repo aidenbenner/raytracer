@@ -9,7 +9,7 @@
 using namespace std;
 
 int main () {
-	Camera c(Vec3(0,0,0), Vec3(0,0,1), 40, 40, 0, 1000, 1000);
+	Camera c(Vec3(0,0,0), Vec3(0,0,1), 40, 40, 0, 4000, 4000);
 	Scene s(c);
 
 	Sphere sph1 = Sphere(Vec3(0, 10, 100), 10, Vec3(20, 102, 20), 0.3);
