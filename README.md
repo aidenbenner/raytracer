@@ -21,3 +21,8 @@ Raytracer built in C++, capable of producing pretty circles.
 
 #### Shadow effect complete.
 ![](images/progression4.png)
+
+<p align="center">
+  <h4> Created a 2D circle </h4>
+  <img src="images/progression0.png">
+</p>
