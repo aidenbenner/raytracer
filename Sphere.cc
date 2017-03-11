@@ -7,9 +7,11 @@ Sphere::Sphere(Vec3 center, double radius, Vec3 surfaceColor, double transparenc
 Vec3 *Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
 	Vec3 proj = Vec3::proj(center - rayOrigin, rayDirection) + rayOrigin;
 
-  Vec3 ref = center - rayOrigin; 
+	Vec3 ref = center - rayOrigin;
 
-  if(Vec3::dot(ref , rayDirection) < 0) { return nullptr; }
+	if(Vec3::dot(ref, rayDirection) < 0) {
+		return nullptr;
+	}
 
 	double perp = (center - proj).length();
 	if (perp < radius) {
@@ -22,5 +24,5 @@ Vec3 *Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection)
 
 double Sphere::angle(const Vec3 &point, const Vec3 &rayDirection) {
 	Vec3 normal = -(point - center);
-	return acos(Vec3::dot(normal, rayDirection)/ (rayDirection.length() * normal.length())); 
+	return acos(Vec3::dot(normal, rayDirection)/ (rayDirection.length() * normal.length()));
 }
