@@ -7,7 +7,7 @@
 </p>
 
 ## Description
-Raytracer built in C++, capable of producing pretty circles. And planes.
+Raytracer built in C++ without any external libraries - capable of producing pretty circles. And planes.
 
 ###Progressions
 
@@ -38,6 +38,6 @@ Raytracer built in C++, capable of producing pretty circles. And planes.
 
 #### Created Plane for cooler shadow effect
 <p align="center">
-   <img src="https://puu.sh/uDFNX/fafccf7fbe.png">
+  <img src="img/progression5.png">
 </p>
 
