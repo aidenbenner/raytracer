@@ -18,3 +18,6 @@ Raytracer built in C++, capable of producing pretty circles.
 
 #### Almost there!
 ![](images/progression3.png)
+
+#### Shadow effect complete.
+![](images/progression3.png)
