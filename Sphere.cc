@@ -15,3 +15,8 @@ Vec3 *Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection)
 		return nullptr;
 	}
 }
+
+double Sphere::angle(const Vec3 &point, const Vec3 &rayDirection) {
+	Vec3 normal = -(point - center);
+	return acos(Vec3::dot(normal, rayDirection)/ (rayDirection.length() * normal.length())); 
+}

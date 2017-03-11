@@ -87,7 +87,7 @@ Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
 		return Vec3(255,255,255); // white
 	}
 
-	Vec3 col = shapes[objInd]->getSurfaceColor(); //Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
+	Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint)); //Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
 
 	return col;
 }

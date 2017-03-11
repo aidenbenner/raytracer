@@ -7,3 +7,7 @@ Shape::Shape(Vec3 surfaceColor, double transparency) : surfaceColor(surfaceColor
 Vec3 *Shape::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
 
 }
+
+double Shape::angle(const Vec3 &point, const Vec3 &rayDirection){
+
+}
