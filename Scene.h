@@ -24,7 +24,7 @@ inline void AddLight(Light* l) {
 Vec3 Trace(Vec3& dir, Vec3& pos);
 
 vector<vector<Vec3> > Render();
-bool ShadowTrace(Vec3 &pos);
+bool inShadow(Vec3 &pos);
 
 private:
 Camera cam;
