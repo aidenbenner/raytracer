@@ -65,6 +65,5 @@ Vec3 Vec3::cross(const Vec3 &a, const Vec3 &b) {
 }
 
 Vec3 Vec3::proj(const Vec3 &a, const Vec3 &b) {
-	// std::cout << a << " " << b << std::endl;
 	return b * Vec3::dot(a, b) / Vec3::dot(b, b);
 }
