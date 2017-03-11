@@ -2,6 +2,10 @@
 # Raytracer
 ## [Alexander Shah](github.com/ZanderShah), [Angela Chang](github.com/changangela), [Aiden Benner](github.com/aidenbenner)
 
+<p align="center">
+  <img src="https://puu.sh/uDBaY/7c9782375e.png">
+</p>
+
 ## Description
 Raytracer built in C++, capable of producing pretty circles.
 
@@ -29,7 +33,7 @@ Raytracer built in C++, capable of producing pretty circles.
 
 #### Shadow effect complete.
 <p align="center">
-  <img src="images/progression4.png">
+  <img src="https://puu.sh/uDBaY/7c9782375e.png">
 </p>
 
 
