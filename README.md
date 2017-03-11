@@ -13,22 +13,22 @@ Raytracer built in C++, capable of producing pretty circles.
 
 #### Created a 2D circle
 <p align="center">
-  <img src="images/progression0.png">
+  <img src="img/progression0.png">
 </p>
 
 #### Created a 2D circle with varying light intensities
 <p align="center">
-  <img src="images/progression1.png">
+  <img src="img/progression1.png">
 </p>
 
 #### Created a 3D circle with varying light intensities
 <p align="center">
-  <img src="images/progression2.png">
+  <img src="img/progression2.png">
 </p>
 
 #### Almost there!
 <p align="center">
-  <img src="images/progression3.png">
+  <img src="img/progression3.png">
 </p>
 
 #### Shadow effect complete.
