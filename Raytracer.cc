@@ -14,8 +14,8 @@ int main () {
 
 
 	Sphere sph1 = Sphere(Vec3(0, 10, 60), 10, Vec3(20, 102, 20), 0.3);
-	Sphere sph2 = Sphere(Vec3(0, 10, 80), 10, Vec3(20, 102, 20), 0.3);
-	Sphere sph3 = Sphere(Vec3(20, 0, 40), 10, Vec3(12, 32, 123), 0.3);
+	Sphere sph2 = Sphere(Vec3(-30, 20, 80), 7, Vec3(100, 40, 20), 0.3);
+	Sphere sph3 = Sphere(Vec3(20, 0, 40), 13, Vec3(12, 32, 123), 0.3);
 
 	s.AddShape(&sph1);
 	s.AddShape(&sph2);
