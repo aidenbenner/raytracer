@@ -11,8 +11,8 @@ vector<vector<Vec3> > Scene::Render() {
 	double ph = cam.GetPHeight();
 	double pw = cam.GetPWidth();
 
-	Vec3 pos = Vec3(0, 0, 0); // cam.GetPos();
-	Vec3 dir = Vec3(0, 0, 1); // cam.GetDir();
+	Vec3 pos = cam.GetPos();
+	Vec3 dir = cam.GetDir();
 
 	vector<vector<Vec3> > image;
 	image.resize(height);
