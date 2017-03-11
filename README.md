@@ -7,7 +7,7 @@
 </p>
 
 ## Description
-Raytracer built in C++, capable of producing pretty circles.
+Raytracer built in C++, capable of producing pretty circles. And planes.
 
 ###Progressions
 
