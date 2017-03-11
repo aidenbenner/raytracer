@@ -11,15 +11,15 @@ vector<vector<Vec3> > Scene::Render() {
 	double ph = cam.GetPHeight();
 	double pw = cam.GetPWidth();
 
-	Vec3 pos = cam.GetPos();
-	Vec3 dir = cam.GetDir();
+	Vec3 pos = Vec3(0, 0, 0); // cam.GetPos();
+	Vec3 dir = Vec3(0, 0, 1); // cam.GetDir();
 
 	vector<vector<Vec3> > image;
 	image.resize(height);
 
 	for(int i = 0; i<height; i++) {
 		double per = (double) i / height;
-		double y = per * ph - ph/2;
+		double y = per * ph - ph / 2;
 
 		image[i].resize(width);
 
@@ -28,8 +28,8 @@ vector<vector<Vec3> > Scene::Render() {
 			double x = hper * pw - pw/2;
 			double z = cam.GetPDist();
 
-			Vec3 ray(x,y,z);
-			image[i][k] = Trace(dir, ray);
+			Vec3 ray = Vec3(x, y, z) - pos;
+			image[i][k] = Trace(ray, pos);
 		}
 	}
 	return image;
@@ -87,7 +87,7 @@ Vec3 Scene::Trace(Vec3& dir, Vec3& pos) {
 		return Vec3(255,255,255); // white
 	}
 
-	Vec3 col = Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
+	Vec3 col = shapes[objInd]->getSurfaceColor(); //Scene::ShadowTrace(*hitPoint) ? shapes[objInd]->getSurfaceColor() : Vec3(0, 0, 0);
 
 	return col;
 }
