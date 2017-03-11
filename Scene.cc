@@ -91,5 +91,5 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir) {
 	col = Scene::inShadow(*hitPoint) ? col : Vec3(0, 0, 0);
 
 	delete hitPoint;
-	return col; h
+	return col;
 }
