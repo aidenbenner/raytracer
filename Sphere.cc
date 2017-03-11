@@ -12,6 +12,6 @@ Vec3 *Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection)
 		double d = sqrt(radius * radius - perp * perp);
 		return new Vec3(proj - rayDirection.normalize() * d);
 	} else {
-		return NULL;
+		return nullptr;
 	}
 }
