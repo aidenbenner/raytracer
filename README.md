@@ -2,5 +2,8 @@
 # Raytracer
 ## Alexander Shah, Angela Chang, Aiden Benner
 
-### Description
+## Description
 Raytracer built in C++, capable of producing pretty circles.
+
+###Progressions
+![](progression0.png)
