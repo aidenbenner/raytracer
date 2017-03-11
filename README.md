@@ -1,6 +1,6 @@
 
 # Raytracer
-## Alexander Shah, Angela Chang, Aiden Benner
+## [Alexander Shah](github.com/ZanderShah), [Angela Chang](github.com/changangela), [Aiden Benner](github.com/aidenbenner)
 
 ## Description
 Raytracer built in C++, capable of producing pretty circles.
