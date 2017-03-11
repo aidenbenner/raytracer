@@ -19,6 +19,8 @@ Vec3 operator - () const;
 Vec3 operator * (const double &f) const;
 Vec3 operator / (const double &f) const;
 
+void print(); 
+
 static double dot(const Vec3 &a, const Vec3 &b);
 static Vec3 cross(const Vec3 &a, const Vec3 &b);
 static Vec3 proj(const Vec3 &a, const Vec3 &b);

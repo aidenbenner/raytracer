@@ -52,6 +52,10 @@ double Vec3::length() const {
 	return sqrt(x * x + y * y + z * z);
 }
 
+void Vec3::print(){
+  std::cout << "[" << x << " " << y << " " << z << "]"; 
+}
+
 Vec3 Vec3::normalize() const{
 	double l = length();
 	return Vec3(x / l, y / l, z / l);
