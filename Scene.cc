@@ -90,5 +90,6 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir) {
 	Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()));
 	col = Scene::inShadow(*hitPoint) ? col : Vec3(0, 0, 0);
 
+	delete hitPoint;
 	return col;
 }
