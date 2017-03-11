@@ -75,8 +75,7 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir) {
 
 		double dist = (*point - pos).length();
 		if (dist < minDist) {
-			objInd = i;
-			minDist = dist;
+			objInd = i; minDist = dist;
 			hitPoint = point;
 		} else {
 			delete point;
@@ -87,8 +86,9 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir) {
 		return Vec3(255,255,255); // white
 	}
 
-	Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()));
+	Vec3 col = shapes[objInd]->getSurfaceColor() * (0.4 + 0.6 * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()))); 
 	col = Scene::inShadow(*hitPoint) ? col : Vec3(0, 0, 0);
 
+  delete hitPoint; 
 	return col;
 }
