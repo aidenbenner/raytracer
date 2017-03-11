@@ -3,7 +3,7 @@
 ## [Alexander Shah](github.com/ZanderShah), [Angela Chang](github.com/changangela), [Aiden Benner](github.com/aidenbenner)
 
 <p align="center">
-  <img src="https://puu.sh/uDBaY/7c9782375e.png">
+  <img src="https://puu.sh/uDFNX/fafccf7fbe.png">
 </p>
 
 ## Description
@@ -38,5 +38,6 @@ Raytracer built in C++, capable of producing pretty circles. And planes.
 
 #### Created Plane for cooler shadow effect
 <p align="center">
-   <img src="img/progression5.png">
+   <img src="https://puu.sh/uDFNX/fafccf7fbe.png">
 </p>
+
