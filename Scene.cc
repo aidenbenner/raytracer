@@ -16,10 +16,13 @@ vector<vector<Vec3> > Scene::Render() {
 
 	vector<vector<Vec3> > image;
 	image.resize(height);
+
 	for(int i = 0; i<height; i++) {
 		double per = (double) i / height;
 		double y = per * ph - ph/2;
+
 		image[i].resize(width);
+
 		for(int k = 0; k<width; k++) {
 			double hper = (double)k / width;
 			double x = hper * pw - pw/2;
@@ -34,13 +37,14 @@ vector<vector<Vec3> > Scene::Render() {
 
 // True if it hits light
 bool Scene::ShadowTrace(Vec3& pos) {
+	Vec3* inter;
 	for (int i = 0; i < light.size(); i++) {
 		Vec3 ndir = light[i]->getPos() - pos;
 		bool ret = true;
 
 		for (int j = 0; j < shapes.size(); j++) {
-
-			if (shapes[j]->intersectionPoint(pos, ndir) != nullptr) {
+			inter = shapes[j]->intersectionPoint(pos, ndir);
+			if (inter != nullptr && (*inter - pos).length() <= ndir.length()) {
 				ret = false;
 			}
 		}
