@@ -41,7 +41,7 @@ Raytracer built in C++ without any external libraries - capable of producing pre
   <img src="img/progression5.png">
 </p>
 
-#### Experimenting with Reflections 
+#### Experimenting with Reflections: Spherical Mirror 
 <p align="center">
-  <img src="http://imgur.com/766yGkF">
+  <img src="http://i.imgur.com/766yGkF.png">
 </p>
