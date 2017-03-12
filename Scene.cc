@@ -14,6 +14,17 @@ vector<vector<Vec3> > Scene::Render() {
 
   Vec3 pos = cam.GetPos();
   Vec3 dir = cam.GetDir();
+  dir = dir.normalize(); 
+
+
+
+  
+  double xAng = 0;
+  double yAng = 0;
+
+  //rotates about z axis
+  double zAng = 3.14159;
+
 
   vector<vector<Vec3> > image;
   image.resize(height);
@@ -30,6 +41,11 @@ vector<vector<Vec3> > Scene::Render() {
       double z = cam.GetPDist();
 
       Vec3 ray = (Vec3(x, y, z) - pos).normalize();
+
+      ray = Vec3::rotate(ray, Vec3(1,0,0), xAng); 
+      ray = Vec3::rotate(ray, Vec3(0,1,0), yAng); 
+      ray = Vec3::rotate(ray, Vec3(0,0,1), zAng); 
+
       image[i][k] = Trace(pos, ray);
     }
   }
@@ -94,8 +110,18 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   }
 
 
-    Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()));
-  col = Scene::inShadow(*hitPoint) ? col : Vec3(0, 0, 0);
+
+  Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()));
+  //Vec3 refract = Trace(*hitPoint,dir,depth - 1);
+  //col = col * 0.1 + refract * 0.9; 
+  
+
+  //why is this ! in shadow !? 
+  if(!Scene::inShadow(*hitPoint)) {
+    col = Vec3(0,0,0); 
+  }
+
+
 
   delete hitPoint;
   return col;
