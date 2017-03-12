@@ -7,3 +7,7 @@ Cylinder::Cylinder(Vec3 center, Vec3 axis, double radius, double height, Vec3 su
 Vec3 *Cylinder::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
 	
 }
+
+Vec3 Cylinder::getNormal(Vec3 hitpoint){
+  return Vec3(0,0,0);
+}

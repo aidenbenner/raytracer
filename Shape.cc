@@ -14,6 +14,8 @@ double Shape::angle(const Vec3 &point, const Vec3 &rayDirection){
 
 }
 
+
+
 Vec3 Shape::Snells(double initIndex, double theta, const Vec3 &normal, 
     const Vec3 &dir)
 {

@@ -13,6 +13,12 @@ Vec3 *Plane::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) 
 	} else return NULL;
 }
 
+
+Vec3 Plane::getNormal(Vec3 hitpoint){
+  return normal;
+}
+
+
 double Plane::angle(const Vec3 &point, const Vec3 &rayDirection) {
 	return acos(Vec3::dot(normal, rayDirection)/ (rayDirection.length() * normal.length()));
 }

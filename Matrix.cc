@@ -15,7 +15,6 @@ Matrix::Matrix(int row, int col){
 		for(int k = 0; k<height; k++) {
 			mat[i][k] = 0;
 		}
-
 	}
 }
 

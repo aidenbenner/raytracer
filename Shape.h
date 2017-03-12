@@ -23,6 +23,8 @@ class Shape {
       return refInd;
     }
 
+    virtual Vec3 getNormal(Vec3 hitpoint) =0; 
+
   Vec3 Snells(double initIndex, double theta, const Vec3 &normal, 
       const Vec3 &dir);
 

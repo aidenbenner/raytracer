@@ -11,6 +11,8 @@ public:
 	Cylinder(Vec3 center, Vec3 axis, double radius, double height, Vec3 surfaceColor, double transparency, 
       double refInd);
 	Vec3 *intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) = 0;
+
+  Vec3 getNormal(Vec3 norm); 
 	
 };
 

@@ -16,37 +16,44 @@ vector<vector<Vec3> > Scene::Render() {
   Vec3 dir = cam.GetDir();
   dir = dir.normalize(); 
 
-
-
-  
   double xAng = 0;
   double yAng = 0;
 
   //rotates about z axis
-  double zAng = 3.14159;
+  double zAng = 0;
 
+  double fov = PI/6; 
+  double angle = tan(0.5 * fov); 
+  double aspect = width / height;
 
   vector<vector<Vec3> > image;
   image.resize(height);
 
   for(int i = 0; i<height; i++) {
     double per = (double) i / height;
-    double y = per * ph - ph / 2;
+    double y = ((2.0 * i / height) - 1) * angle;//per * ph - ph / 2;
 
     image[i].resize(width);
 
     for(int k = 0; k<width; k++) {
       double hper = (double)k / width;
-      double x = hper * pw - pw/2;
-      double z = cam.GetPDist();
+      double x = ((2.0 * k / width) - (double)1) * angle * aspect;// hper * pw - pw/2;
+      double z = -1;//cam.GetPDist();
+
+
 
       Vec3 ray = (Vec3(x, y, z) - pos).normalize();
+      ray = -ray;
 
+      //should be faster if we implemented a rotation matrix but that can wait 
       ray = Vec3::rotate(ray, Vec3(1,0,0), xAng); 
       ray = Vec3::rotate(ray, Vec3(0,1,0), yAng); 
       ray = Vec3::rotate(ray, Vec3(0,0,1), zAng); 
 
-      image[i][k] = Trace(pos, ray);
+      
+
+      Vec3 out = Trace(pos, ray);
+      image[i][k] = Vec3(round(out.X()), round(out.Y()), round(out.Z()));
     }
   }
   return image;
@@ -57,26 +64,27 @@ bool Scene::inShadow(Vec3& pos) {
   Vec3* inter;
   for (int i = 0; i < light.size(); i++) {
     Vec3 ndir = (light[i]->getPos() - pos).normalize();
-    bool ret = true;
+    bool ret = false;
 
     for (int j = 0; j < shapes.size(); j++) {
       inter = shapes[j]->intersectionPoint(pos, ndir);
       if (inter != nullptr) {
-        ret = false;
+        ret = true;
         delete inter;
       }
     }
 
-    if (ret) {
-      return true;
+    if (!ret) {
+      return false;
     }
   }
-  return false;
+  return true;
 }
 
 // Returns pixel value
 
 
+int badInd = -1; 
 Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   if(depth <= 0){ 
     return Vec3(0,255,0); //so we don't confuse with shadows for rn make this green 
@@ -88,6 +96,7 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   double minDist = INF;
 
   for(int i = 0; i< shapes.size(); i++) {
+    if(i == badInd) continue;
     Vec3* point = shapes[i]->intersectionPoint(pos, dir);
 
     // Check if we hit
@@ -105,19 +114,30 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
     }
   }
 
+  badInd = -1; 
   if(hitPoint == nullptr) {
-    return Vec3(255,255,255); // white
+    return Vec3(0,0,255); // white
   }
 
 
-
   Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()));
+
+  if(shapes[objInd]->getTransp() > 0.5){
+    Vec3 norm = shapes[objInd]->getNormal(*hitPoint); 
+    double normalAng = shapes[objInd]->angle(*hitPoint, dir); 
+    Vec3 reflVec = -Vec3::rotate(dir, norm, PI);
+    reflVec = reflVec.normalize(); 
+    badInd = objInd;
+    Vec3 col2 = Trace(*hitPoint, reflVec, depth--);
+    return col2 * 0.8 + col * 0.2;
+  }
+
   //Vec3 refract = Trace(*hitPoint,dir,depth - 1);
   //col = col * 0.1 + refract * 0.9; 
   
 
   //why is this ! in shadow !? 
-  if(!Scene::inShadow(*hitPoint)) {
+  if(Scene::inShadow(*hitPoint)) {
     col = Vec3(0,0,0); 
   }
 
