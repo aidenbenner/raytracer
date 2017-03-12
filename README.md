@@ -41,3 +41,7 @@ Raytracer built in C++ without any external libraries - capable of producing pre
   <img src="img/progression5.png">
 </p>
 
+#### Experimenting with Reflections 
+<p align="center">
+  <img src="http://imgur.com/766yGkF">
+</p>
