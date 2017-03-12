@@ -26,3 +26,4 @@ double Sphere::angle(const Vec3 &point, const Vec3 &rayDirection) {
 	Vec3 normal = -(point - center);
 	return acos(Vec3::dot(normal, rayDirection)/ (rayDirection.length() * normal.length()));
 }
+

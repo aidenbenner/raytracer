@@ -65,6 +65,7 @@ void Matrix::Print() {
 	}
 }
 
+
 void mat_test(){
 	Matrix mat(5,5);
 	mat[1][2] = 5;

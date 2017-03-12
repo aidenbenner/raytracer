@@ -48,6 +48,14 @@ double Vec3::Z() const {
 	return z;
 }
 
+//rotates v theta radians towards an arbitrary vector k
+Vec3 Vec3::rotate(const Vec3& v, const Vec3& k, double theta){
+  // Rodrigues' rotation formula
+  Vec3 out = v * std::cos(theta) + Vec3::cross(k,v) * std::sin(theta) 
+    + (k * (Vec3::dot(k,v))) * (1 - std::cos(theta));
+  return out;
+}
+
 double Vec3::length() const {
 	return sqrt(x * x + y * y + z * z);
 }
@@ -60,6 +68,7 @@ Vec3 Vec3::normalize() const{
 	double l = length();
 	return Vec3(x / l, y / l, z / l);
 }
+
 
 double Vec3::dot(const Vec3 &a, const Vec3 &b) {
 	return a.X() * b.X() + a.Y() * b.Y() + a.Z() * b.Z();

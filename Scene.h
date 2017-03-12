@@ -22,6 +22,7 @@ inline void AddLight(Light* l) {
 }
 
 Vec3 Trace(Vec3& dir, Vec3& pos);
+Vec3 Trace(Vec3& dir, Vec3& pos, int depth);
 
 vector<vector<Vec3> > Render();
 bool inShadow(Vec3 &pos);

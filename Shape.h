@@ -23,6 +23,9 @@ class Shape {
       return refInd;
     }
 
+  Vec3 Snells(double initIndex, double theta, const Vec3 &normal, 
+      const Vec3 &dir);
+
   private:
     Vec3 surfaceColor;
     double transparency;
