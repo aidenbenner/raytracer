@@ -22,7 +22,7 @@ Vec3 *Sphere::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection)
 	}
 }
 
-Vec3 *selfIntersection(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
+Vec3 * Sphere::selfIntersection(const Vec3 &rayOrigin, const Vec3 &rayDirection) {
 	Vec3 proj = Vec3::proj(center - rayOrigin, rayDirection) + rayOrigin;
 
 	Vec3 ref = center - rayOrigin;
