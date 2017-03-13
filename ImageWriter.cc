@@ -1,4 +1,5 @@
 #include "ImageWriter.h"
+#include <cmath>
 
 void ImageWriter::write(vector<vector<Vec3> > image) {
 
@@ -14,7 +15,11 @@ void ImageWriter::write(vector<vector<Vec3> > image) {
 	// outputs color of each pixel
 	for (int i = 0; i < height; ++i) {
 		for (int j = 0; j < width; ++j) {
-			ofs << (unsigned char) (image[i][j].X()) << (unsigned char) (image[i][j].Y()) << (unsigned char) (image[i][j].Z());
+      double r = image[i][j].X();
+      double g = image[i][j].Y();
+      double b = image[i][j].Z();
+
+			ofs << (unsigned char) (r) << (unsigned char) (g) << (unsigned char) (b);
 		}
 	}
 

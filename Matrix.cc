@@ -15,7 +15,6 @@ Matrix::Matrix(int row, int col){
 		for(int k = 0; k<height; k++) {
 			mat[i][k] = 0;
 		}
-
 	}
 }
 
@@ -64,6 +63,7 @@ void Matrix::Print() {
 		cout << "]" << endl;
 	}
 }
+
 
 void mat_test(){
 	Matrix mat(5,5);

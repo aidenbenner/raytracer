@@ -27,3 +27,9 @@
 *.exe
 *.out
 *.app
+
+# no more commiting images
+*.ppm
+
+#TT
+.DS_Store

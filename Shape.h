@@ -6,18 +6,32 @@
 #include "Constants.h"
 
 class Shape {
-Vec3 surfaceColor;
-double transparency;
 
+  public:
+    Shape(Vec3 surfaceColor, double transparency, double refraction);
+    virtual Vec3 *intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection);
+    virtual double angle(const Vec3 &point, const Vec3 &rayDirection);
+    Vec3 getSurfaceColor(){
+      return surfaceColor;
+    }
 
-public:
+    double getTransp() { 
+      return transparency;
+    }
 
-Shape(Vec3 surfaceColor, double transparency);
-virtual Vec3 *intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection);
-virtual double angle(const Vec3 &point, const Vec3 &rayDirection);
-Vec3 getSurfaceColor(){
-	return surfaceColor;
-}
+    double getRefInd() {
+      return refInd;
+    }
+
+    virtual Vec3 getNormal(Vec3 hitpoint) =0; 
+
+  Vec3 Snells(double initIndex, double theta, const Vec3 &normal, 
+      const Vec3 &dir);
+
+  private:
+    Vec3 surfaceColor;
+    double transparency;
+    double refInd;
 
 };
 
