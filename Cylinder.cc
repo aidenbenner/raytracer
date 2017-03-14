@@ -8,7 +8,7 @@ Vec3 *Cylinder::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirectio
 	
 }
 
-Vec3 Cylinder::getNormal(Vec3 hitpoint){
+Vec3 Cylinder::getNormal(const Vec3 &hitpoint){
   return Vec3(0,0,0);
 }
 
@@ -19,3 +19,4 @@ double Cylinder::angle(const Vec3 &point, const Vec3 &rayDirection) {
 
 	return acos(Vec3::dot(normal, rayDirection)/ (rayDirection.length() * normal.length()));
 }
+

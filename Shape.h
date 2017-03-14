@@ -23,10 +23,12 @@ class Shape {
       return refInd;
     }
 
-    virtual Vec3 getNormal(Vec3 hitpoint) =0; 
 
-  Vec3 Snells(double initIndex, double theta, const Vec3 &normal, 
-      const Vec3 &dir);
+
+    PosDir Snells(double initIndex, const Vec3 &hit, const Vec3 &dir);
+
+    virtual Vec3 getNormal(const Vec3 &hitpoint) =0; 
+
 
   private:
     Vec3 surfaceColor;

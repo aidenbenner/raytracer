@@ -86,6 +86,7 @@ bool Scene::inShadow(Vec3& pos) {
 
 int badInd = -1; 
 Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
+
   if(depth <= 0){ 
     return Vec3(0,255,0); //so we don't confuse with shadows for rn make this green 
   }
@@ -116,19 +117,28 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
   badInd = -1; 
   if(hitPoint == nullptr) {
-    return Vec3(0,0,255); // white
+    return Vec3(255,255,255); // white
   }
 
 
   Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()));
 
+  //Refl 
+  //if(shapes[objInd]->getTransp() > 0.5){
+    //Vec3 norm = shapes[objInd]->getNormal(*hitPoint); 
+    //double normalAng = shapes[objInd]->angle(*hitPoint, dir); 
+    //Vec3 reflVec = -Vec3::rotate(dir, norm, PI);
+    //reflVec = reflVec.normalize(); 
+    //badInd = objInd;
+    //Vec3 col2 = Trace(*hitPoint, reflVec, depth--);
+    //return col2 * 0.8 + col * 0.2;
+  //}
+
+  //Refr
   if(shapes[objInd]->getTransp() > 0.5){
-    Vec3 norm = shapes[objInd]->getNormal(*hitPoint); 
-    double normalAng = shapes[objInd]->angle(*hitPoint, dir); 
-    Vec3 reflVec = -Vec3::rotate(dir, norm, PI);
-    reflVec = reflVec.normalize(); 
+    PosDir refrac = shapes[objInd]->Snells(1, *hitPoint, dir);
     badInd = objInd;
-    Vec3 col2 = Trace(*hitPoint, reflVec, depth--);
+    Vec3 col2 = Trace(refrac.pos, refrac.dir, depth--);
     return col2 * 0.8 + col * 0.2;
   }
 

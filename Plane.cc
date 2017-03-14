@@ -14,7 +14,7 @@ Vec3 *Plane::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) 
 }
 
 
-Vec3 Plane::getNormal(Vec3 hitpoint){
+Vec3 Plane::getNormal(const Vec3 &hitpoint){
   return normal;
 }
 

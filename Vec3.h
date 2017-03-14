@@ -6,6 +6,7 @@
 #include <cstdio>
 #include "Constants.h"
 
+
 class Vec3 {
 public:
 Vec3();
@@ -19,7 +20,7 @@ Vec3 operator - () const;
 Vec3 operator * (const double &f) const;
 Vec3 operator / (const double &f) const;
 
-void print(); 
+void print() const; 
 
 static double dot(const Vec3 &a, const Vec3 &b);
 static Vec3 cross(const Vec3 &a, const Vec3 &b);
@@ -35,6 +36,11 @@ Vec3 normalize() const;
 
 private:
 double x, y, z;
+};
+
+struct PosDir {
+  Vec3 pos; 
+  Vec3 dir;
 };
 
 #endif
