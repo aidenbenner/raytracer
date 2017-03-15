@@ -30,7 +30,7 @@ class Shape {
     virtual Vec3 getNormal(const Vec3 &hitpoint) =0; 
 
 
-  private:
+  protected: 
     Vec3 surfaceColor;
     double transparency;
     double refInd;
