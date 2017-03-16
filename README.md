@@ -5,6 +5,9 @@
 <p align="center">
   <img src="https://puu.sh/uDFNX/fafccf7fbe.png">
 </p>
+<p align="center">
+  <img src="http://i.imgur.com/PlMtaIv.png">
+</p>
 
 ## Description
 Raytracer built in C++ without any external libraries - capable of producing pretty circles. And planes.
@@ -44,4 +47,9 @@ Raytracer built in C++ without any external libraries - capable of producing pre
 #### Experimenting with Reflections: Spherical Mirror 
 <p align="center">
   <img src="http://i.imgur.com/766yGkF.png">
+</p>
+
+#### Refractions: 
+<p align="center">
+  <img src="http://i.imgur.com/PlMtaIv.png">
 </p>
