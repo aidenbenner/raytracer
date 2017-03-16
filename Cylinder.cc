@@ -1,4 +1,5 @@
 #include "Cylinder.h"
+#include  <cassert>
 
 Cylinder::Cylinder(Vec3 center, Vec3 axis, double radius, double height, Vec3 surfaceColor, double transparency, double refInd)
 	: Shape(surfaceColor, transparency, refInd), center(center), axis(axis), radius(radius), height(height){
@@ -32,5 +33,11 @@ Vec3 Cylinder::getNormal(const Vec3 &hitpoint){
 
 double Cylinder::angle(const Vec3 &point, const Vec3 &rayDirection) {
 	return 0;
+}
+
+Vec3 * Cylinder::selfIntersection(const Vec3 &rayOrigin, const Vec3 &rayDirection){
+  //TODO
+  assert(false); 
+  return nullptr;
 }
 

@@ -9,8 +9,11 @@ class Shape {
 
   public:
     Shape(Vec3 surfaceColor, double transparency, double refraction);
-    virtual Vec3 *intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection);
-    virtual double angle(const Vec3 &point, const Vec3 &rayDirection);
+    virtual Vec3 *intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) =0;
+    virtual double angle(const Vec3 &point, const Vec3 &rayDirection) =0; 
+    virtual Vec3 getNormal(const Vec3 &hitpoint) =0; 
+    virtual Vec3 *selfIntersection(const Vec3 &rayOrigin, const Vec3 &rayDirection) =0; 
+
     Vec3 getSurfaceColor(){
       return surfaceColor;
     }
@@ -23,12 +26,7 @@ class Shape {
       return refInd;
     }
 
-
-
     PosDir Snells(double initIndex, const Vec3 &hit, const Vec3 &dir);
-
-    virtual Vec3 getNormal(const Vec3 &hitpoint) =0; 
-
 
   protected: 
     Vec3 surfaceColor;

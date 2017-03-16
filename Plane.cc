@@ -1,5 +1,5 @@
-
 #include "Plane.h"
+#include  <cassert>
 
 Plane::Plane(Vec3 normal, Vec3 point, Vec3 surfaceColor, double transparency, double refInd)
 	: Shape(surfaceColor, transparency, refInd), normal(normal), point(point) {
@@ -18,6 +18,11 @@ Vec3 Plane::getNormal(const Vec3 &hitpoint){
   return normal;
 }
 
+Vec3 * Plane::selfIntersection(const Vec3 &rayOrigin, const Vec3 &rayDirection){
+  //TODO
+  cout << "plane " << endl;
+  return nullptr;
+}
 
 double Plane::angle(const Vec3 &point, const Vec3 &rayDirection) {
 	return acos(Vec3::dot(normal, rayDirection)/ (rayDirection.length() * normal.length()));

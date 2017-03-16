@@ -16,7 +16,7 @@ vector<vector<Vec3> > Scene::Render() {
   Vec3 dir = cam.GetDir();
   dir = dir.normalize(); 
 
-  double xAng = 0;
+  double xAng = PI / 12;
   double yAng = 0;
 
   //rotates about z axis
@@ -52,6 +52,7 @@ vector<vector<Vec3> > Scene::Render() {
 
       
 
+      
       Vec3 out = Trace(pos, ray);
       image[i][k] = Vec3(round(out.X()), round(out.Y()), round(out.Z()));
     }
@@ -136,10 +137,10 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
   //Refr
   if(shapes[objInd]->getTransp() > 0.5){
-    PosDir refrac = shapes[objInd]->Snells(1, *hitPoint, dir);
+    PosDir refrac = shapes[objInd]->Snells(1.0, *hitPoint, dir);
     badInd = objInd;
     Vec3 col2 = Trace(refrac.pos, refrac.dir, depth--);
-    return col2 * 0.8 + col * 0.2;
+    return col2 * 0.9;
   }
 
   //Vec3 refract = Trace(*hitPoint,dir,depth - 1);

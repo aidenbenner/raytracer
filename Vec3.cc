@@ -48,11 +48,13 @@ double Vec3::Z() const {
 	return z;
 }
 
-//rotates v theta radians towards an arbitrary vector k
-Vec3 Vec3::rotate(const Vec3& v, const Vec3& k, double theta){
-  // Rodrigues' rotation formula
-  Vec3 out = v * std::cos(theta) + Vec3::cross(k.normalize(),v) * std::sin(theta) 
-    + (k.normalize() * (Vec3::dot(k.normalize(),v))) * (1 - std::cos(theta));
+//rotates v theta radians around the direction give by axisOfRot (should be a unit vector but we convert)
+//follows right hand rule
+//https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula
+Vec3 Vec3::rotate(const Vec3& v, const Vec3& axisOfRot, double theta){
+  Vec3 k = axisOfRot.normalize(); 
+  Vec3 out = v * std::cos(theta) + Vec3::cross(k,v) * std::sin(theta) 
+    + (k * (Vec3::dot(k,v))) * (1.0 - std::cos(theta));
   return out;
 }
 
