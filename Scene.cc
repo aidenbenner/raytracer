@@ -122,11 +122,11 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
 
   Vec3 col = shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
-      ,(-(*hitPoint) + light[0]->getPos()).normalize());
+      ,(-(*hitPoint) + light[0]->getPos()).normalize()) * light[0]->getIntensity(*hitPoint) ;
 
 
   Vec3 fresCol = Vec3(0,0,0);
-  if(shapes[objInd]->getTransp() > EPS) { 
+  if(shapes[objInd]->isTransp()) { 
     Vec3 reflDir = shapes[objInd]->getReflectionDir(*hitPoint,dir); 
     badInd = objInd;
     Vec3 reflectionCol = Trace(*hitPoint, reflDir, depth--);

@@ -7,9 +7,11 @@ using namespace std;
 class Light {
 Vec3 position;
 Vec3 color;
+double brightness;
 public:
-Light(Vec3 position, Vec3 color);
-Vec3 getPos();
+	Light(Vec3 position, Vec3 color, double brightness);
+	Vec3 getPos();
+	double getIntensity(const Vec3 & pos);
 };
 
 #endif

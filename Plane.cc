@@ -19,8 +19,6 @@ Vec3 Plane::getNormal(const Vec3 &hitpoint){
 }
 
 Vec3 * Plane::selfIntersection(const Vec3 &rayOrigin, const Vec3 &rayDirection){
-  //TODO
-  cout << "plane " << endl;
   return nullptr;
 }
 
