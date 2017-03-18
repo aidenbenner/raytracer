@@ -22,6 +22,10 @@ class Shape {
       return transparency;
     }
 
+    bool isTransp() {
+      return (fabs(transparency) > 0);
+    }
+
     double getRefInd() {
       return refInd;
     }
