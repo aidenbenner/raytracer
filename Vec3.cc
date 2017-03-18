@@ -52,21 +52,21 @@ double Vec3::Z() const {
 //follows right hand rule
 //https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula
 Vec3 Vec3::rotate(const Vec3& v, const Vec3& axisOfRot, double theta){
-  Vec3 k = axisOfRot.normalize(); 
-  Vec3 out = v * std::cos(theta) + Vec3::cross(k,v) * std::sin(theta) 
-    + (k * (Vec3::dot(k,v))) * (1.0 - std::cos(theta));
-  return out;
+	Vec3 k = axisOfRot.normalize();
+	Vec3 out = v * std::cos(theta) + Vec3::cross(k,v) * std::sin(theta)
+	           + (k * (Vec3::dot(k,v))) * (1.0 - std::cos(theta));
+	return out;
 }
 
 double Vec3::length() const {
 	return sqrt(x * x + y * y + z * z);
 }
 
-void Vec3::print() const{
-  std::cout << "[" << x << " " << y << " " << z << "]"; 
+void Vec3::print() const {
+	std::cout << "[" << x << " " << y << " " << z << "]";
 }
 
-Vec3 Vec3::normalize() const{
+Vec3 Vec3::normalize() const {
 	double l = length();
 	return Vec3(x / l, y / l, z / l);
 }

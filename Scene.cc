@@ -8,12 +8,13 @@
 vector<vector<Vec3> > Scene::Render() {
   int height = cam.GetSHeight();
   int width = cam.GetSWidth();
-double ph = cam.GetPHeight();
+
+  double ph = cam.GetPHeight();
   double pw = cam.GetPWidth();
 
   Vec3 pos = cam.GetPos();
   Vec3 dir = cam.GetDir();
-  dir = dir.normalize(); 
+  dir = dir.normalize();
 
   double xAng = PI / 12;
   double yAng = 0;
@@ -39,6 +40,8 @@ double ph = cam.GetPHeight();
       double x = ((2.0 * k / width) - (double)1) * angle * aspect;// hper * pw - pw/2;
       double z = -1;//cam.GetPDist();
 
+
+
       Vec3 ray = (Vec3(x, y, z) - pos).normalize();
       ray = -ray;
 
@@ -46,7 +49,9 @@ double ph = cam.GetPHeight();
       ray = Vec3::rotate(ray, Vec3(1,0,0), xAng); 
       ray = Vec3::rotate(ray, Vec3(0,1,0), yAng); 
       ray = Vec3::rotate(ray, Vec3(0,0,1), zAng); 
-      
+
+
+
       Vec3 out = Trace(pos, ray);
       image[i][k] = Vec3(round(out.X()), round(out.Y()), round(out.Z()));
     }
@@ -77,6 +82,8 @@ bool Scene::inShadow(Vec3& pos) {
 }
 
 // Returns pixel value
+
+
 int badInd = -1; 
 Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
@@ -113,11 +120,13 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
     return Vec3(255,255,255); // white
   }
 
-  Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()));
 
-  //Refl 
-  if(shapes[objInd]->getTransp() > 0.5){
+  Vec3 col = shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
+      ,(-(*hitPoint) + light[0]->getPos()).normalize());
 
+
+  Vec3 fresCol = Vec3(0,0,0);
+  if(shapes[objInd]->getTransp() > EPS) { 
     Vec3 reflDir = shapes[objInd]->getReflectionDir(*hitPoint,dir); 
     badInd = objInd;
     Vec3 reflectionCol = Trace(*hitPoint, reflDir, depth--);
@@ -128,13 +137,12 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
     Vec3 refractionCol = Trace(refrac.pos, refrac.dir, depth--);
 
     double fresK = shapes[objInd]->getFresK(1.0, *hitPoint, dir); 
-    cout << fresK << endl;
-    return  refractionCol * fresK + reflectionCol *  (1 - fresK);
+    return refractionCol * fresK + reflectionCol *  (1 - fresK);
   }
 
   //Vec3 refract = Trace(*hitPoint,dir,depth - 1);
   //col = col * 0.1 + refract * 0.9; 
-  
+
 
   //why is this ! in shadow !? 
   if(Scene::inShadow(*hitPoint)) {
@@ -142,7 +150,9 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   }
 
   delete hitPoint;
-  return col;
+
+  double k = shapes[objInd]->getTransp(); 
+  return col * (1 - k) + fresCol * k;
 }
 
 Vec3 Scene::Trace(Vec3& pos, Vec3& dir) {
