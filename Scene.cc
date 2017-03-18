@@ -125,17 +125,6 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
   Vec3 col = shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize(),(-(*hitPoint) + light[0]->getPos()).normalize());
 
-  //Refl 
-  //if(shapes[objInd]->getTransp() > 0.5){
-    //Vec3 norm = shapes[objInd]->getNormal(*hitPoint); 
-    //double normalAng = shapes[objInd]->angle(*hitPoint, dir); 
-    //Vec3 reflVec = -Vec3::rotate(dir, norm, PI);
-    //reflVec = reflVec.normalize(); 
-    //badInd = objInd;
-    //Vec3 col2 = Trace(*hitPoint, reflVec, depth--);
-    //return col2 * 0.8 + col * 0.2;
-  //}
-
   //Refr
   if(shapes[objInd]->getTransp() > 0.5){
     PosDir refrac = shapes[objInd]->Snells(1.0, *hitPoint, dir);
