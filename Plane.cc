@@ -1,7 +1,7 @@
 #include "Plane.h"
 #include  <cassert>
 
-Plane::Plane(Vec3 normal, Vec3 point, Vec3 surfaceColor, double transparency, double refInd)
+Plane::Plane(Vec3 normal, Vec3 point, Vec3 surfaceColor, double refInd, double transparency)
 	: Shape(surfaceColor, transparency, refInd), normal(normal), point(point) {
 }
 

@@ -1,6 +1,6 @@
 #include "Sphere.h"
 
-Sphere::Sphere(Vec3 center, double radius, Vec3 surfaceColor, double transparency, double refracInd)
+Sphere::Sphere(Vec3 center, double radius, Vec3 surfaceColor, double refracInd, double transparency)
 	: Shape(surfaceColor, transparency, refracInd), center(center), radius(radius) {
 }
 

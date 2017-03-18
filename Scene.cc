@@ -126,7 +126,7 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   Vec3 col = shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize(),(-(*hitPoint) + light[0]->getPos()).normalize());
 
   //Refr
-  if(shapes[objInd]->getTransp() > 0.5){
+  if(abs(shapes[objInd]->getTransp()) > EPS){
     PosDir refrac = shapes[objInd]->Snells(1.0, *hitPoint, dir);
     badInd = objInd;
     Vec3 col2 = Trace(refrac.pos, refrac.dir, depth--);

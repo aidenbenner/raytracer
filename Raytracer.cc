@@ -28,14 +28,15 @@ int main () {
 	Sphere sph3 = Sphere(Vec3(4, -3, 20), 2, Vec3(12, 32, 123), 1, 0);
 	Sphere sph4 = Sphere(Vec3(-4, -3, 20), 2, Vec3(130, 0, 0), 1, 0);
 
-	Plane pla1 = Plane(Vec3(0, -3, 0), Vec3(0,-6, 100), Vec3(200, 170, 190), 0.4, 0.8);
-	Plane pla2 = Plane(Vec3(0, 0, -1), Vec3(0, 0, 100), Vec3(220, 220, 220), 0.3, 0.8);
+	Plane pla1 = Plane(Vec3(0, -3, 0), Vec3(0,-6, 100), Vec3(200, 170, 190), 0.4, 0);
+//	Plane pla2 = Plane(Vec3(0, 0, -1), Vec3(0, 0, 100), Vec3(46, 220, 32), 0.3, 0);
 
 	s.AddShape(&sph1);
 	s.AddShape(&sph2);
   	s.AddShape(&sph3);
   	s.AddShape(&sph4);
 	s.AddShape(&pla1);
+//	s.AddShape(&pla2);
 
 	Light l(Vec3(0, 15, 0), Vec3(0, 0, 5));
 
