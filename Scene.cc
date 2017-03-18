@@ -86,6 +86,8 @@ bool Scene::inShadow(Vec3& pos) {
 
 
 int badInd = -1; 
+
+
 Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
   if(depth <= 0){ 
@@ -121,8 +123,7 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
     return Vec3(255,255,255); // white
   }
 
-
-  Vec3 col = shapes[objInd]->getSurfaceColor() * cos(shapes[objInd]->angle(*hitPoint, *hitPoint - light[0]->getPos()));
+  Vec3 col = shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize(),(-(*hitPoint) + light[0]->getPos()).normalize());
 
   //Refl 
   //if(shapes[objInd]->getTransp() > 0.5){

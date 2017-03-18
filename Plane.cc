@@ -15,7 +15,7 @@ Vec3 *Plane::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) 
 
 
 Vec3 Plane::getNormal(const Vec3 &hitpoint){
-  return normal;
+  return normal * (Vec3::dot(hitpoint, normal) > 0 ? -1 : 1);
 }
 
 Vec3 * Plane::selfIntersection(const Vec3 &rayOrigin, const Vec3 &rayDirection){

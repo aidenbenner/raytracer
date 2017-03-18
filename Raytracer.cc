@@ -33,8 +33,8 @@ int main () {
 
 	s.AddShape(&sph1);
 	s.AddShape(&sph2);
-  s.AddShape(&sph3);
-  s.AddShape(&sph4);
+  	s.AddShape(&sph3);
+  	s.AddShape(&sph4);
 	s.AddShape(&pla1);
 
 	Light l(Vec3(0, 15, 0), Vec3(0, 0, 5));
