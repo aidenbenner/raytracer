@@ -49,7 +49,7 @@ PosDir Shape::Snells(double outsideInd, const Vec3 &hit, const Vec3 &dir, bool e
       //total internal reflection
 
       Vec3 norm = -getNormal(hit); 
-      Vec3 reflVec = -Vec3::rotate(dir, norm, PI);
+      Vec3 reflVec = Vec3::rotate(dir, norm, PI);
 
       return Snells(outsideInd, hit, reflVec, false, depth - 1); 
     }
@@ -110,7 +110,6 @@ double Shape::getFresK(double initInd, const Vec3 &hit, const Vec3 &dir, bool en
     n1 = refInd;
   }
 
-
   double ang = angle(hit,dir);
   if(ang > PI / 2){
     ang = angle(hit,-dir);
@@ -124,14 +123,14 @@ double Shape::getFresK(double initInd, const Vec3 &hit, const Vec3 &dir, bool en
       return 1; 
     }
   }
+  double Rs = (n2 * cos(ang) - n1 * cos(ang2)) / (n2 * cos(ang) + n1 * cos(ang2)); 
+  Rs = Rs * Rs;
 
-
-  double Rs = (n2 * cos(ang) - n1 * cos(ang2)) / (n2 * cos(ang) + n1 * cos(ang2));
-  Rs *= Rs;
   double Rp = (n1 * cos(ang2) - n2 * cos(ang)) / (n1 * cos(ang2) + n2 * cos(ang));
-  Rp *= Rp;
-
-  return 1 - (Rs + Rp)/2.0; 
+  Rp = Rp * Rp;
+  
+  double out = 1.0 - (Rs + Rp) / 2.0;
+  return out * out * out * out * out * out; 
 }
 
 

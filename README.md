@@ -6,7 +6,7 @@
   <img src="https://puu.sh/uDFNX/fafccf7fbe.png">
 </p>
 <p align="center">
-  <img src="http://i.imgur.com/PlMtaIv.png">
+  <img src="http://i.imgur.com/QAR1vAu.png">
 </p>
 
 ## Description
@@ -51,5 +51,5 @@ Raytracer built in C++ without any external libraries - capable of producing pre
 
 #### Refractions: 
 <p align="center">
-  <img src="http://i.imgur.com/PlMtaIv.png">
+  <img src="http://i.imgur.com/QAR1vAu.png">
 </p>
