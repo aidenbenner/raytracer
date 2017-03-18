@@ -24,7 +24,7 @@ int main () {
 	Scene s(c);
 
 	Sphere sph1 = Sphere(Vec3(0, -3, 20), 2, Vec3(20, 102, 20), 0.4, 0.9);
-	Sphere sph2 = Sphere(Vec3(0, -3, 10), 2, Vec3(100, 40, 20), 1.99, 1.3);
+	Sphere sph2 = Sphere(Vec3(0, -3, 10), 2, Vec3(100, 40, 20), 1.3, 1.1);
 	Sphere sph3 = Sphere(Vec3(4, -3, 20), 2, Vec3(12, 32, 123), 0.4, 0.7);
 	Sphere sph4 = Sphere(Vec3(-4, -3, 20), 2, Vec3(130, 0, 0), 0.4, 0.7);
 

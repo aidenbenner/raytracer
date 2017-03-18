@@ -40,6 +40,7 @@ Vec3 * Sphere::selfIntersection(const Vec3 &rayOrigin, const Vec3 &rayDirection)
 	}
 }
 
+
 Vec3 Sphere::getNormal(const Vec3& hitpoint) {
 	return hitpoint - center;
 }

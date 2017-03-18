@@ -26,7 +26,10 @@ class Shape {
       return refInd;
     }
 
-    PosDir Snells(double initIndex, const Vec3 &hit, const Vec3 &dir);
+    PosDir Snells(double initIndex, const Vec3 &hit, const Vec3 &dir, bool entering = true, int depth = MAX_REFRACTION_DEPTH);
+    double getFresK(double initIndex, const Vec3 &hit, const Vec3 &dir, bool entering = true); 
+
+    Vec3 getReflectionDir(const Vec3 &hit, const Vec3 &dir); 
 
   protected: 
     Vec3 surfaceColor;

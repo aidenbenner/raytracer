@@ -40,6 +40,7 @@ inline double GetSWidth(){
 	return swidth;
 }
 
+
 private:
 Vec3 pos;
 Vec3 dir;
