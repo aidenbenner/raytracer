@@ -7,8 +7,8 @@ Vec3 Light::getPos() {
 
 double Light::getIntensity(const Vec3 &pos) {
 	double dist = (position - pos).length();
-	cout << dist << endl;
-	cout << brightness / (4 * PI * dist * dist);
+	//cout << dist << endl;
+	//cout << brightness / (4 * PI * dist * dist);
 	
 	return brightness / (4 * PI * dist * dist);
 }
