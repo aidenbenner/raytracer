@@ -20,11 +20,11 @@ void test() {
 
 
 int main () {
-	Camera c(Vec3(0,0,0), Vec3(0,0,1), 90, 90, 0, 1080, 1080);
+	Camera c(Vec3(0,0,0), Vec3(0,0,0.2), 90, 90, 0, 1080, 1080);
 	Scene s(c);
 
 	Sphere sph1 = Sphere(Vec3(0, -3, 20), 2, Vec3(20, 102, 20), 1, 0);
-	Sphere sph2 = Sphere(Vec3(0, -3, 10), 2, Vec3(100, 40, 20), 1.1, 1.5);
+	Sphere sph2 = Sphere(Vec3(0, -3, 10), 2, Vec3(100, 40, 20), 1.3, 1.5);
 	Sphere sph3 = Sphere(Vec3(4, -3, 20), 2, Vec3(12, 32, 123), 1, 0);
 	Sphere sph4 = Sphere(Vec3(-4, -3, 20), 2, Vec3(130, 0, 0), 1, 0);
 

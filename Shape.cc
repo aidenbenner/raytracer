@@ -55,7 +55,7 @@ PosDir Shape::Snells(double outsideInd, const Vec3 &hit, const Vec3 &dir, bool e
     }
   }
 
-  Vec3 internalDir = Vec3::rotate(dir, Vec3::cross(normal, dir), (theta2 - theta1)); 
+  Vec3 internalDir = Vec3::rotate(dir, Vec3::cross(normal, dir), - (theta2 - theta1)); 
 
   if(!entering){
     PosDir out;
@@ -130,7 +130,7 @@ double Shape::getFresK(double initInd, const Vec3 &hit, const Vec3 &dir, bool en
   Rp = Rp * Rp;
   
   double out = 1.0 - (Rs + Rp) / 2.0;
-  return out * out * out * out * out * out; 
+  return out; 
 }
 
 
