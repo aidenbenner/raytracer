@@ -78,7 +78,7 @@ double Vec3::dot(const Vec3 &a, const Vec3 &b) {
 	return a.X() * b.X() + a.Y() * b.Y() + a.Z() * b.Z();
 }
 Vec3 Vec3::cross(const Vec3 &a, const Vec3 &b) {
-	return Vec3(a.Y() * b.Z() - a.Z() * b.Y(), a.Z() * b.X() - a.X() * b.Z(), a.X() * b.Y() - a.Y() * b.Z());
+	return Vec3(a.Y() * b.Z() - a.Z() * b.Y(), a.Z() * b.X() - a.X() * b.Z(), a.X() * b.Y() - a.Y() * b.X());
 }
 
 Vec3 Vec3::proj(const Vec3 &a, const Vec3 &b) {
