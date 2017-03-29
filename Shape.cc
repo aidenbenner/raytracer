@@ -11,10 +11,7 @@ Shape::Shape(Vec3 surfaceColor, double transparency, double refracInd) : surface
 const int REFRACTION_DEPTH = 5; 
 PosDir Shape::Snells(double outsideInd, const Vec3 &hit, const Vec3 &dir, bool entering, int depth)
 {
-  //cout << "called on " << outsideInd << " entering " << entering << " depth " << depth; 
-  //hit.print();
-  //dir.print();
-  //cout << endl;
+
   if(depth == 0){
     PosDir out;
     out.dir = dir;

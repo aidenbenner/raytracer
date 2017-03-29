@@ -67,6 +67,9 @@ bool Scene::inShadow(Vec3& pos) {
     bool ret = false;
 
     for (int j = 0; j < shapes.size(); j++) {
+      if(shapes[j]->isTransp()){
+        continue;
+      }
       inter = shapes[j]->intersectionPoint(pos, ndir);
       if (inter != nullptr) {
         ret = true;
@@ -80,7 +83,6 @@ bool Scene::inShadow(Vec3& pos) {
   }
   return true;
 }
-
 // Returns pixel value
 
 
@@ -137,14 +139,10 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
     Vec3 refractionCol = Trace(refrac.pos, refrac.dir, depth--);
 
     double fresK = shapes[objInd]->getFresK(1.0, *hitPoint, dir); 
-    return refractionCol * fresK + reflectionCol *  (1 - fresK);
+    fresK = 1;
+    fresCol = (refractionCol * fresK + reflectionCol *  (1 - fresK));
   }
 
-  //Vec3 refract = Trace(*hitPoint,dir,depth - 1);
-  //col = col * 0.1 + refract * 0.9; 
-
-
-  //why is this ! in shadow !? 
   if(Scene::inShadow(*hitPoint)) {
     col = Vec3(0,0,0); 
   }
