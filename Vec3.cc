@@ -72,11 +72,18 @@ Vec3 Vec3::normalize() const {
 }
 
 
+Vec3 Vec3::random(double max_val){
+  double x = ((double)rand() / RAND_MAX - 0.5) * 2 * max_val;
+  double y = ((double)rand() / RAND_MAX - 0.5) * 2 * max_val;
+  double z = ((double)rand() / RAND_MAX - 0.5) * 2 * max_val;
+  return Vec3(x,y,z);
+}
 
 
 double Vec3::dot(const Vec3 &a, const Vec3 &b) {
 	return a.X() * b.X() + a.Y() * b.Y() + a.Z() * b.Z();
 }
+
 Vec3 Vec3::cross(const Vec3 &a, const Vec3 &b) {
 	return Vec3(a.Y() * b.Z() - a.Z() * b.Y(), a.Z() * b.X() - a.X() * b.Z(), a.X() * b.Y() - a.Y() * b.X());
 }

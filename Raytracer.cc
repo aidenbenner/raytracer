@@ -20,7 +20,7 @@ void test() {
 
 
 int main () {
-	Camera c(Vec3(0,0,0), Vec3(0,0,0.2), 90, 90, 0, 1080, 1080);
+	Camera c(Vec3(0,0,0), Vec3(0,0,0.2), 90, 90, 0, 500, 500);
 	Scene s(c);
 
 	Sphere sph1 = Sphere(Vec3(0, -3, 20), 2, Vec3(20, 102, 20), 1, 0);

@@ -138,30 +138,35 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
   Vec3 diffuse = Vec3(0,0,0);
   Vec3 specular = Vec3(0,0,0);
-  double SPEC_N = 50;
+
+  int SAMPLES = 200; 
+  double SPEC_N = 10;
   for (int i = 0; i < (int)light.size(); i++) {
-    Vec3 ndir = (light[i]->getPos() - *hitPoint).normalize();
+    for(int k = 0; k<SAMPLES; k++){
 
-    bool objInWay = false; 
-    // check if something else is in the way
-    for (int j = 0; j < (int)shapes.size(); j++) {
-      if(shapes[j]->isTransp()){
-        continue;
+      Vec3 ndir = (light[i]->getPos() + Vec3::random(1.5) - *hitPoint).normalize();
+
+
+      bool objInWay = false; 
+      // check if something else is in the way
+      for (int j = 0; j < (int)shapes.size(); j++) {
+        auto inter = shapes[j]->intersectionPoint(*hitPoint, ndir);
+        if (inter != nullptr) {
+          objInWay = true;
+          break;
+        }
       }
-      auto inter = shapes[j]->intersectionPoint(*hitPoint, ndir);
-      if (inter != nullptr) {
-        objInWay = true;
-      }
+      if(objInWay) continue;
+      diffuse = diffuse + shapes[objInd]->getSurfaceColor() * std::fmax(Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
+          ,(-(*hitPoint) + light[i]->getPos()).normalize()) * light[i]->getIntensity(*hitPoint), 0) ;
+
+
+      Vec3 R = shapes[objInd]->getReflectionDir(*hitPoint, ndir * -1);
+      specular = specular + Vec3(255,255,255) * std::pow(std::fmax(Vec3::dot(R.normalize(), dir.normalize() * -1), 0), SPEC_N);
     }
-    if(objInWay) continue;
-    diffuse = diffuse + shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
-        ,(-(*hitPoint) + light[0]->getPos()).normalize()) * light[0]->getIntensity(*hitPoint) ;
-
-    Vec3 R = shapes[objInd]->getReflectionDir(*hitPoint, ndir * -1);
-    specular = specular + Vec3(255,255,255) * std::pow(std::fmax(Vec3::dot(R.normalize(), dir.normalize() * -1), 0), SPEC_N);
   }
 
-  Vec3 col = diffuse * kd + specular * ks + ambient * ka;
+  Vec3 col = (diffuse * kd + specular * ks + ambient * ka) * (1.0 / SAMPLES);
 
 
   Vec3 fresCol = Vec3(0,0,0); if(shapes[objInd]->isTransp()) { 
@@ -180,7 +185,7 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   }
 
   if(Scene::inShadow(*hitPoint)) {
-    col = ambient; 
+    // col = ambient; 
   }
 
   delete hitPoint;

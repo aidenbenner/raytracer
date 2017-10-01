@@ -26,6 +26,7 @@ static double dot(const Vec3 &a, const Vec3 &b);
 static Vec3 cross(const Vec3 &a, const Vec3 &b);
 static Vec3 proj(const Vec3 &a, const Vec3 &b);
 static Vec3 rotate(const Vec3 &a, const Vec3 &b, double theta); 
+static Vec3 random(double maxval); 
 
 double X() const;
 double Y() const;
