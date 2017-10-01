@@ -134,6 +134,7 @@ double Shape::getFresK(double initInd, const Vec3 &hit, const Vec3 &dir, bool en
 Vec3 Shape::getReflectionDir(const Vec3 &hit, const Vec3 &dir){
   Vec3 norm = getNormal(hit); 
   Vec3 reflVec = -Vec3::rotate(dir, norm, PI);
+  return reflVec;
 }
 
 

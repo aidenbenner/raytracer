@@ -32,15 +32,16 @@ int main () {
 //	Plane pla2 = Plane(Vec3(0, 0, -1), Vec3(0, 0, 100), Vec3(46, 220, 32), 0.3, 0);
 
 	s.AddShape(&sph1);
-	s.AddShape(&sph2);
+	// s.AddShape(&sph2);
   	s.AddShape(&sph3);
   	s.AddShape(&sph4);
 	s.AddShape(&pla1);
 //	s.AddShape(&pla2);
 
-	Light l(Vec3(0, 15, 0), Vec3(255, 255, 255), 10000);
+	Light l(Vec3(0, 3, 0), Vec3(255, 255, 255), 10000);
+	Light l2(Vec3(0, 10, 13), Vec3(255, 255, 255), 10000);
 
-	s.AddLight(&l);
+	s.AddLight(&l2);
 
 	// cout << sph.intersectionPoint(Vec3(0,0,-5), Vec3 (0,0,1))->X() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Y() << sph.intersectionPoint(Vec3(0,0,-5), Vec3(0,0,1))->Z() << endl;
 

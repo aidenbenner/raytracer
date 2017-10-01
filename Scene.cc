@@ -6,6 +6,7 @@
 #include "Constants.h"
 #include <algorithm>
 #include <iostream>
+#include <cmath>
 
 vector<vector<Vec3> > Scene::Render() {
   int height = cam.GetSHeight();
@@ -85,6 +86,7 @@ bool Scene::inShadow(Vec3& pos) {
   }
   return true;
 }
+
 // Returns pixel value
 
 const Vec3 BACKGROUND_COLOR(255,255,255);
@@ -126,19 +128,43 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   }
 
 
-  Vec3 col = shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
-      ,(-(*hitPoint) + light[0]->getPos()).normalize()) * light[0]->getIntensity(*hitPoint) ;
 
-  //// specular lighting
+  // specular lighting
   double ka = 0.1; 
-  double kd = 0.5; 
-  double ks = 0.5; 
+  double kd = 0.8; 
+  double ks = 0.22; 
 
-  Vec3 ambient = shapes[objInd]->getSurfaceColor() * ka * kd; 
-  col = col + ambient;
+  Vec3 ambient = shapes[objInd]->getSurfaceColor() * ka; 
 
-  Vec3 fresCol = Vec3(0,0,0);
-  if(shapes[objInd]->isTransp()) { 
+  Vec3 diffuse = Vec3(0,0,0);
+  Vec3 specular = Vec3(0,0,0);
+  double SPEC_N = 50;
+  for (int i = 0; i < (int)light.size(); i++) {
+    Vec3 ndir = (light[i]->getPos() - *hitPoint).normalize();
+
+    bool objInWay = false; 
+    // check if something else is in the way
+    for (int j = 0; j < (int)shapes.size(); j++) {
+      if(shapes[j]->isTransp()){
+        continue;
+      }
+      auto inter = shapes[j]->intersectionPoint(*hitPoint, ndir);
+      if (inter != nullptr) {
+        objInWay = true;
+      }
+    }
+    if(objInWay) continue;
+    diffuse = diffuse + shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
+        ,(-(*hitPoint) + light[0]->getPos()).normalize()) * light[0]->getIntensity(*hitPoint) ;
+
+    Vec3 R = shapes[objInd]->getReflectionDir(*hitPoint, ndir * -1);
+    specular = specular + Vec3(255,255,255) * std::pow(std::fmax(Vec3::dot(R.normalize(), dir.normalize() * -1), 0), SPEC_N);
+  }
+
+  Vec3 col = diffuse * kd + specular * ks + ambient * ka;
+
+
+  Vec3 fresCol = Vec3(0,0,0); if(shapes[objInd]->isTransp()) { 
     Vec3 reflDir = shapes[objInd]->getReflectionDir(*hitPoint,dir); 
     badInd = objInd;
     Vec3 reflectionCol = Trace(*hitPoint, reflDir, depth--);
