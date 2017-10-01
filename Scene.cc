@@ -4,6 +4,8 @@
 #include "Scene.h"
 #include "Sphere.h"
 #include "Constants.h"
+#include <algorithm>
+#include <iostream>
 
 vector<vector<Vec3> > Scene::Render() {
   int height = cam.GetSHeight();
@@ -53,7 +55,7 @@ vector<vector<Vec3> > Scene::Render() {
 
 
       Vec3 out = Trace(pos, ray);
-      image[i][k] = Vec3(round(out.X()), round(out.Y()), round(out.Z()));
+      image[i][k] = Vec3(std::min((int)round(out.X()), 255), std::min((int)round(out.Y()), 255), std::min((int)round(out.Z()), 255));
     }
   }
   return image;
@@ -85,6 +87,7 @@ bool Scene::inShadow(Vec3& pos) {
 }
 // Returns pixel value
 
+const Vec3 BACKGROUND_COLOR(255,255,255);
 
 int badInd = -1; 
 Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
@@ -119,13 +122,20 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
   badInd = -1; 
   if(hitPoint == nullptr) {
-    return Vec3(255,255,255); // white
+    return BACKGROUND_COLOR; 
   }
 
 
   Vec3 col = shapes[objInd]->getSurfaceColor() * Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
       ,(-(*hitPoint) + light[0]->getPos()).normalize()) * light[0]->getIntensity(*hitPoint) ;
 
+  //// specular lighting
+  double ka = 0.1; 
+  double kd = 0.5; 
+  double ks = 0.5; 
+
+  Vec3 ambient = shapes[objInd]->getSurfaceColor() * ka * kd; 
+  col = col + ambient;
 
   Vec3 fresCol = Vec3(0,0,0);
   if(shapes[objInd]->isTransp()) { 
@@ -139,12 +149,12 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
     Vec3 refractionCol = Trace(refrac.pos, refrac.dir, depth--);
 
     double fresK = shapes[objInd]->getFresK(1.0, *hitPoint, dir); 
-    fresK = 1;
+    fresK = 0.8;
     fresCol = (refractionCol * fresK + reflectionCol *  (1 - fresK));
   }
 
   if(Scene::inShadow(*hitPoint)) {
-    col = Vec3(0,0,0); 
+    col = ambient; 
   }
 
   delete hitPoint;
