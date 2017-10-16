@@ -2,12 +2,12 @@
 # Raytracer
 ## [Alexander Shah](https://github.com/ZanderShah), [Angela Chang](https://github.com/changangela), [Aiden Benner](https://github.com/aidenbenner)
 
+
+## Added phong reflection and montecarlo integration for soft shadows
 <p align="center">
-  <img src="https://puu.sh/uDFNX/fafccf7fbe.png">
+  <img src="https://imgur.com/85xkgdj">
 </p>
-<p align="center">
-  <img src="http://i.imgur.com/QAR1vAu.png">
-</p>
+
 
 ## Description
 Raytracer built in C++ without any external libraries - capable of producing pretty circles. And planes.
@@ -53,3 +53,12 @@ Raytracer built in C++ without any external libraries - capable of producing pre
 <p align="center">
   <img src="http://i.imgur.com/QAR1vAu.png">
 </p>
+
+
+<p align="center">
+  <img src="https://puu.sh/uDFNX/fafccf7fbe.png">
+</p>
+<p align="center">
+  <img src="http://i.imgur.com/QAR1vAu.png">
+</p>
+
