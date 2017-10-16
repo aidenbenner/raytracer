@@ -17,13 +17,10 @@ vector<vector<Vec3> > Scene::Render() {
 
   Vec3 pos = cam.GetPos();
   Vec3 dir = cam.GetDir();
-  dir = dir.normalize();
 
-  double xAng = PI / 12;
-  double yAng = 0;
-
-  //rotates about z axis
-  double zAng = 0;
+  double xAng = dir.X();
+  double yAng = dir.Y();
+  double zAng = dir.Z();
 
   double fov = PI/6; 
   double angle = tan(0.5 * fov); 
@@ -43,16 +40,13 @@ vector<vector<Vec3> > Scene::Render() {
       double x = ((2.0 * k / width) - (double)1) * angle * aspect;// hper * pw - pw/2;
       double z = -1;//cam.GetPDist();
 
-
-
-      Vec3 ray = (Vec3(x, y, z) - pos).normalize();
+      Vec3 ray = (Vec3(x, y, z)).normalize();
       ray = -ray;
 
       //should be faster if we implemented a rotation matrix but that can wait 
       ray = Vec3::rotate(ray, Vec3(1,0,0), xAng); 
       ray = Vec3::rotate(ray, Vec3(0,1,0), yAng); 
       ray = Vec3::rotate(ray, Vec3(0,0,1), zAng); 
-
 
 
       Vec3 out = Trace(pos, ray);
@@ -139,30 +133,32 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   Vec3 diffuse = Vec3(0,0,0);
   Vec3 specular = Vec3(0,0,0);
 
-  int SAMPLES = 200; 
+  int SAMPLES = 50; 
   double SPEC_N = 10;
   for (int i = 0; i < (int)light.size(); i++) {
     for(int k = 0; k<SAMPLES; k++){
 
-      Vec3 ndir = (light[i]->getPos() + Vec3::random(1.5) - *hitPoint).normalize();
-
+      Vec3 ndir = (light[i]->getPos() + Vec3::random(1) - *hitPoint).normalize();
 
       bool objInWay = false; 
       // check if something else is in the way
       for (int j = 0; j < (int)shapes.size(); j++) {
         auto inter = shapes[j]->intersectionPoint(*hitPoint, ndir);
         if (inter != nullptr) {
-          objInWay = true;
-          break;
+          if((*inter - *hitPoint).length() < (light[i]->getPos() - *hitPoint).length() ){
+            objInWay = true;
+            break;
+          }
         }
       }
-      if(objInWay) continue;
-      diffuse = diffuse + shapes[objInd]->getSurfaceColor() * std::fmax(Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
-          ,(-(*hitPoint) + light[i]->getPos()).normalize()) * light[i]->getIntensity(*hitPoint), 0) ;
+      if(objInWay) {
+        continue;
+      }
+      diffuse =  diffuse + shapes[objInd]->getSurfaceColor() * std::fmax(Vec3::dot((shapes[objInd]->getNormal(*hitPoint)).normalize()
+            ,(-(*hitPoint) + light[i]->getPos()).normalize()) * light[i]->getIntensity(*hitPoint), 0) ;
 
-
-      Vec3 R = shapes[objInd]->getReflectionDir(*hitPoint, ndir * -1);
-      specular = specular + Vec3(255,255,255) * std::pow(std::fmax(Vec3::dot(R.normalize(), dir.normalize() * -1), 0), SPEC_N);
+       Vec3 R = shapes[objInd]->getReflectionDir(*hitPoint, ndir * -1);
+       specular = specular + Vec3(255,255,255) * std::pow(std::fmax(Vec3::dot(R.normalize(), dir.normalize() * -1), 0), SPEC_N);
     }
   }
 

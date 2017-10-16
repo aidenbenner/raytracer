@@ -1,4 +1,5 @@
 #include "Vec3.h"
+#include <cassert>
 
 Vec3::Vec3() : x(0), y(0), z(0) {
 }
@@ -68,6 +69,7 @@ void Vec3::print() const {
 
 Vec3 Vec3::normalize() const {
 	double l = length();
+  assert(l != 0);
 	return Vec3(x / l, y / l, z / l);
 }
 
@@ -76,6 +78,13 @@ Vec3 Vec3::random(double max_val){
   double x = ((double)rand() / RAND_MAX - 0.5) * 2 * max_val;
   double y = ((double)rand() / RAND_MAX - 0.5) * 2 * max_val;
   double z = ((double)rand() / RAND_MAX - 0.5) * 2 * max_val;
+  return Vec3(x,y,z);
+}
+
+Vec3 Vec3::randInt(int max_val){
+  double x = (rand() % max_val);
+  double y = (rand() % max_val);
+  double z = (rand() % max_val);
   return Vec3(x,y,z);
 }
 
