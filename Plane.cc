@@ -10,7 +10,7 @@ Vec3 *Plane::intersectionPoint(const Vec3 &rayOrigin, const Vec3 &rayDirection) 
 
 	if (lambda > EPS) {
 		return new Vec3(rayOrigin + rayDirection * lambda);
-	} else return NULL;
+	} else return nullptr;
 }
 
 
