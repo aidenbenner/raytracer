@@ -5,14 +5,14 @@
 
 ## Added phong reflection and montecarlo integration for soft shadows
 <p align="center">
-  <img src="https://imgur.com/85xkgdj">
+  <img src="https://i.imgur.com/85xkgdj.png">
 </p>
 
 
 ## Description
 Raytracer built in C++ without any external libraries - capable of producing pretty circles. And planes.
 
-###Progressions
+### Progressions
 
 #### Created a 2D circle
 <p align="center">
