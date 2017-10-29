@@ -29,6 +29,9 @@ vector<vector<Vec3> > Scene::Render() {
   vector<vector<Vec3> > image;
   image.resize(height);
 
+  int total_pixels = height * width; 
+  int done_pixels = 0;
+
   for(int i = 0; i<height; i++) {
     double per = (double) i / height;
     double y = ((2.0 * i / height) - 1) * angle;//per * ph - ph / 2;
@@ -50,7 +53,11 @@ vector<vector<Vec3> > Scene::Render() {
 
 
       Vec3 out = Trace(pos, ray);
+      if(fmod(100.0 * done_pixels / (double)total_pixels, 1) == 0) 
+        printf("Rendering... %.0lf%% Complete \n",  100.0 * done_pixels / (double)total_pixels  ); 
+
       image[i][k] = Vec3(std::min((int)round(out.X()), 255), std::min((int)round(out.Y()), 255), std::min((int)round(out.Z()), 255));
+      done_pixels++;
     }
   }
   return image;

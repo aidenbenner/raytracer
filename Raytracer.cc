@@ -36,7 +36,7 @@ void sceneA () {
 }
 
 void sceneB () {
-  Camera c(Vec3(0, 10.1, -50.1), Vec3(PI / 12, 0, 0), 90, 90, 0, 1000, 1000);
+  Camera c(Vec3(0, 10.1, -50.1), Vec3(PI / 12, 0, 0), 90, 90, 0, 500, 500);
   Scene s(c);
 
   Sphere sph1 = Sphere(Vec3(15, -5, 20), 6, Vec3(20, 102, 20), 1, 0);
