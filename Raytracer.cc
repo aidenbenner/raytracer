@@ -36,11 +36,11 @@ void sceneA () {
 }
 
 void sceneB () {
-  Camera c(Vec3(0, 10.1, -50.1), Vec3(PI / 12, 0, 0), 90, 90, 0, 500, 500);
+  Camera c(Vec3(0, 10.1, -50.1), Vec3(PI / 12, 0, 0), 90, 90, 0, 400, 400);
   Scene s(c);
 
   Sphere sph1 = Sphere(Vec3(15, -5, 20), 6, Vec3(20, 102, 20), 1, 0);
-  Sphere sph2 = Sphere(Vec3(15, 5, 10), 6, Vec3(100, 40, 20), 1.3, 1);
+  Sphere sph2 = Sphere(Vec3(15, 5, 10), 6, Vec3(100, 40, 20), 1.3, 0);
   Sphere sph3 = Sphere(Vec3(0,  3, 20), 3, Vec3(12, 32, 123), 1, 0);
   Sphere sph4 = Sphere(Vec3(-8, -3, 20), 2, Vec3(130, 0, 0), 1, 0);
 

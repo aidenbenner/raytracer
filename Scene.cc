@@ -63,39 +63,18 @@ vector<vector<Vec3> > Scene::Render() {
   return image;
 }
 
-// True if it hits light
-bool Scene::inShadow(Vec3& pos) {
-  Vec3* inter;
-  for (int i = 0; i < light.size(); i++) {
-    Vec3 ndir = (light[i]->getPos() - pos).normalize();
-    bool ret = false;
-
-    for (int j = 0; j < shapes.size(); j++) {
-      if(shapes[j]->isTransp()){
-        continue;
-      }
-      inter = shapes[j]->intersectionPoint(pos, ndir);
-      if (inter != nullptr) {
-        ret = true;
-        delete inter;
-      }
-    }
-
-    if (!ret) {
-      return false;
-    }
-  }
-  return true;
-}
-
-// Returns pixel value
-
 const Vec3 BACKGROUND_COLOR(255,255,255);
 
 int badInd = -1; 
-Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
+int DEPTH_LIM = 100; 
+
+Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth, double refrIndex = 1) {
 
   if(depth <= 0){ 
+    return Vec3(0,255,0); //so we don't confuse with shadows for rn make this green 
+  }
+
+  if(depth > DEPTH_LIM){ 
     return Vec3(0,255,0); //so we don't confuse with shadows for rn make this green 
   }
 
@@ -140,7 +119,7 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
   Vec3 diffuse = Vec3(0,0,0);
   Vec3 specular = Vec3(0,0,0);
 
-  int SAMPLES = 50; 
+  int SAMPLES = 10; 
   double SPEC_N = 10;
   for (int i = 0; i < (int)light.size(); i++) {
     for(int k = 0; k<SAMPLES; k++){
@@ -171,8 +150,8 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
 
   Vec3 col = (diffuse * kd + specular * ks + ambient * ka) * (1.0 / SAMPLES);
 
-
-  Vec3 fresCol = Vec3(0,0,0); if(shapes[objInd]->isTransp()) { 
+  Vec3 fresCol = Vec3(0,0,0); 
+  if(shapes[objInd]->isTransp()) { 
     Vec3 reflDir = shapes[objInd]->getReflectionDir(*hitPoint,dir); 
     badInd = objInd;
     Vec3 reflectionCol = Trace(*hitPoint, reflDir, depth--);
@@ -183,13 +162,10 @@ Vec3 Scene::Trace(Vec3& pos, Vec3& dir, int depth) {
     Vec3 refractionCol = Trace(refrac.pos, refrac.dir, depth--);
 
     double fresK = shapes[objInd]->getFresK(1.0, *hitPoint, dir); 
-    fresK = 0.8;
+    fresK = 0.01;
     fresCol = (refractionCol * fresK + reflectionCol *  (1 - fresK));
   }
 
-  if(Scene::inShadow(*hitPoint)) {
-    // col = ambient; 
-  }
 
   delete hitPoint;
 
