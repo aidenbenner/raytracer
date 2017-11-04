@@ -1,5 +1,5 @@
 all:
-	c++ -std=c++11 *.cc -o Raytracer.exe
+	c++ -std=c++11 *.cc -o Raytracer.exe 
 	./Raytracer.exe
 	xdg-open image.ppm
 
