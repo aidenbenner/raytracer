@@ -51,7 +51,7 @@ Raytracer built in C++ without any external libraries - capable of producing pre
   <img src="img/progression5.png" width=600>
 </p>
 
-#### Shadow effect complete
+### Shadow effect complete
 <p align="center">
   <img src="https://puu.sh/uDBaY/7c9782375e.png" width=600>
 </p>
